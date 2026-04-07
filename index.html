@@ -18,14 +18,12 @@
   html{scroll-behavior:smooth}
   body{font-family:Georgia,serif;background:var(--bg);color:var(--tekst);min-height:100vh;padding-bottom:60px}
 
-  /* ── HEADER ── */
   header{background:var(--g-dark);color:#fff;padding:18px 16px 0;position:sticky;top:0;z-index:200;box-shadow:0 2px 16px rgba(0,0,0,.25)}
   .h-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
   .h-eye{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--g-mint);margin-bottom:4px;font-family:sans-serif}
   header h1{font-size:20px;font-weight:normal}
   .h-meta{font-size:10px;color:var(--g-mint);font-family:sans-serif;letter-spacing:1px;text-align:right;line-height:1.7}
 
-  /* ── TBAR ── */
   .tbar{background:var(--g-mid);display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.1)}
   .ti{text-align:center;padding:10px 4px;border-right:1px solid rgba(255,255,255,.1)}
   .ti:last-child{border-right:none}
@@ -34,22 +32,18 @@
   .pos{color:var(--g-mint)!important}
   .neg{color:var(--geel)!important}
 
-  /* ── TABS ── */
   .tabs{display:flex;background:#fff;border-bottom:2px solid var(--rand);position:sticky;top:110px;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   .tabs::-webkit-scrollbar{display:none}
   .tab{flex:1;min-width:75px;padding:12px 6px;text-align:center;font-size:11px;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;color:#888;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:all .2s;user-select:none}
   .tab.on{color:var(--g-light);border-bottom-color:var(--g-light);font-weight:bold}
 
-  /* ── PANELS ── */
   .panel{display:none}
   .panel.on{display:block}
 
-  /* ── SECTIE ── */
   .sectie{padding:16px}
   .s-titel{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--g-light);margin-bottom:12px;display:flex;align-items:center;gap:8px;font-family:sans-serif}
   .s-titel::after{content:'';flex:1;height:1px;background:var(--rand)}
 
-  /* ── KAART ── */
   .kaart{background:var(--kaart);border-radius:var(--radius);margin-bottom:10px;border:1.5px solid var(--rand);overflow:hidden;transition:border-color .2s,box-shadow .2s,opacity .2s}
   .kaart.aan{border-color:var(--g-light);box-shadow:var(--shadow)}
   .kaart.vp{border-color:var(--g-dark)}
@@ -65,7 +59,6 @@
   .badges{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:4px}
   .badge{font-size:9px;letter-spacing:1px;text-transform:uppercase;border-radius:4px;padding:2px 7px;font-family:sans-serif;font-weight:bold}
   .bv{background:var(--g-dark);color:#fff}
-  .bu{background:var(--oranje);color:#fff}
   .bw{background:#e8e0d0;color:#666}
   .bc{background:#d4e8f7;color:var(--blauw)}
   .k-naam{font-size:15px;font-weight:bold;line-height:1.3}
@@ -86,11 +79,13 @@
   .m2i{width:66px;border:1.5px solid var(--g-light);border-radius:6px;padding:6px 10px;font-size:14px;font-family:Georgia,serif;text-align:center;background:#fff}
   .m2i:focus{outline:none;border-color:var(--g-dark)}
 
-  .bruto-w{display:flex;align-items:center;gap:6px;margin-bottom:8px}
-  .bruto-l{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#888;font-family:sans-serif;white-space:nowrap}
-  .off-b{font-size:10px;background:#fffbf0;border:1px solid #e0c870;color:#8a6c00;border-radius:4px;padding:2px 6px;font-family:sans-serif}
-  .bruto-i{flex:1;border:1.5px solid var(--rand);border-radius:8px;padding:8px 12px;font-size:14px;font-family:Georgia,serif;background:#fffbf0;color:var(--tekst);text-align:right;-webkit-appearance:none}
-  .bruto-i:focus{outline:none;border-color:var(--g-light);box-shadow:0 0 0 3px rgba(64,145,108,.15)}
+  /* Offerte invoer — prominent */
+  .offerte-sectie{background:var(--g-pale);border-radius:10px;padding:12px;margin-bottom:10px;border:1.5px solid var(--g-light)}
+  .offerte-titel{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--g-light);font-family:sans-serif;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+  .offerte-had{font-size:10px;background:#fffbf0;border:1px solid #e0c870;color:#8a6c00;border-radius:4px;padding:2px 6px;font-family:sans-serif}
+  .bruto-i{width:100%;border:1.5px solid var(--g-light);border-radius:8px;padding:10px 14px;font-size:16px;font-family:Georgia,serif;background:#fff;color:var(--tekst);text-align:right;-webkit-appearance:none}
+  .bruto-i:focus{outline:none;border-color:var(--g-dark);box-shadow:0 0 0 3px rgba(64,145,108,.15)}
+  .bruto-hint{font-size:11px;color:#888;font-family:sans-serif;margin-top:5px;text-align:right}
 
   .cijfers{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
   .cijfer{background:var(--bg);border-radius:8px;padding:10px 8px;text-align:center}
@@ -102,7 +97,6 @@
   .extra-r{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
   .extra-i{font-size:12px;color:var(--sub);font-family:sans-serif}
 
-  /* ── TOTAAL PANEL ── */
   .tot-p{padding:16px}
   .tags-blok{background:#fff;border-radius:var(--radius);padding:16px;margin-bottom:16px;border:1px solid var(--rand)}
   .tags-t{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--g-light);font-family:sans-serif;margin-bottom:10px}
@@ -135,7 +129,6 @@
   .reset-btn{display:block;width:100%;background:transparent;border:1.5px solid var(--rand);border-radius:8px;padding:12px;font-size:12px;color:#888;cursor:pointer;font-family:sans-serif;text-align:center;transition:all .2s}
   .reset-btn:active{border-color:var(--oranje);color:var(--oranje)}
 
-  /* ── PLANNING PANEL ── */
   .plan-p{padding:16px}
   .agenda{background:#fff;border-radius:var(--radius);padding:16px;margin-bottom:16px;border:1px solid var(--rand)}
   .agenda h3{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--g-light);font-family:sans-serif;margin-bottom:12px}
@@ -148,7 +141,6 @@
   .ag-t .a-s{font-size:12px;color:var(--sub);margin-top:2px;font-family:sans-serif}
   .acties{font-size:14px;line-height:2.3;color:var(--tekst)}
 
-  /* ── RESPONSIVE ── */
   @media(min-width:600px){
     .hero-grid{grid-template-columns:repeat(3,1fr)}
     .hb.wide{grid-column:span 3}
@@ -159,7 +151,6 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="h-top">
     <div>
@@ -175,7 +166,6 @@
   </div>
 </header>
 
-<!-- TABS -->
 <div class="tabs">
   <div class="tab on" onclick="toonTab('verd',this)">🌿 Verduurzaming</div>
   <div class="tab" onclick="toonTab('woning',this)">🏠 Woning</div>
@@ -183,20 +173,17 @@
   <div class="tab" onclick="toonTab('plan',this)">📅 Planning</div>
 </div>
 
-<!-- PANEL: VERDUURZAMING -->
 <div class="panel on" id="panel-verd">
   <div class="sectie"><div class="s-titel">Isolatie</div><div id="cat-isolatie"></div></div>
   <div class="sectie"><div class="s-titel">Dak</div><div id="cat-dak"></div></div>
   <div class="sectie"><div class="s-titel">Installatie</div><div id="cat-installatie"></div></div>
 </div>
 
-<!-- PANEL: WONING -->
 <div class="panel" id="panel-woning">
   <div class="sectie"><div class="s-titel">Uitbreiding</div><div id="cat-uitbreiding"></div></div>
   <div class="sectie"><div class="s-titel">Comfort &amp; leefbaarheid</div><div id="cat-comfort"></div></div>
 </div>
 
-<!-- PANEL: TOTAAL -->
 <div class="panel" id="panel-totaal">
   <div class="tot-p">
     <div class="tags-blok">
@@ -224,8 +211,8 @@
       <textarea class="not-i" id="notities" placeholder="Aandachtspunten, vragen voor adviseurs, afspraken na offertes…" oninput="slaNotities()"></textarea>
     </div>
     <div class="leg">
-      <strong>Bedragen</strong> zijn schattingen — pas aan zodra offertes binnen zijn (tik op maatregel → bruto veld).<br>
-      <strong>Subsidie Zaanstad</strong> (VHF €7.500 + LAI €1.500) geldt alleen voor verduurzaming — bevestigen 7 mei bij Klimaatstarters.<br>
+      <strong>Offerte invullen</strong> — tik op een maatregel en vul het offertebedrag in. De rest wordt automatisch herberekend.<br>
+      <strong>Subsidie Zaanstad</strong> (VHF €7.500 + LAI €1.500) geldt alleen voor verduurzaming — bevestigen 7 mei.<br>
       <strong>Hypotheek</strong>: €50 extra per maand per €10.000 geleend.<br>
       <strong>Cashflow</strong> = energiebesparing/mnd minus hypotheek extra/mnd.
     </div>
@@ -233,7 +220,6 @@
   </div>
 </div>
 
-<!-- PANEL: PLANNING -->
 <div class="panel" id="panel-plan">
   <div class="plan-p">
     <div class="agenda">
@@ -284,7 +270,6 @@
 </div>
 
 <script>
-// ══ CONFIG ══
 const VHF=7500,LAI=1500,HYP10K=50;
 
 const DATA=[
@@ -324,31 +309,28 @@ const DATA=[
   {id:'serre',naam:'Serre aanbouwen',cat:'uitbreiding',vp:false,wens:true,comfort:false,
    bruto:18000,subsidie:0,besp:0,waarde:0,tvt:null,
    tip:'Extra leefruimte. Geen energiesubsidie. Waardestijging afhankelijk van m² en kwaliteit uitvoering.',
-   risico:null,info:'Vergunning vereist boven ~6m². Pas bruto en m² aan naar eigen wens.',
+   risico:null,info:'Vergunning vereist boven ~6m². Pas m² aan naar eigen wens.',
    m2:true,m2label:'Extra woonoppervlak',m2default:12,wpm2:2500},
-  {id:'keuken',naam:'Keuken renovatie',cat:'comfort',vp:false,wens:false,comfort:true,
-   bruto:15000,subsidie:0,besp:0,waarde:0,tvt:null,
-   tip:'Puur voor wooncomfort — geen energiebesparing, geen subsidie, geen meetbare waardestijging. Maar gewoon fijn.',
-   risico:null,info:'Richtprijs: basis €8k · mid-range €15k · premium €25k+.',m2:false},
+  {id:'keuken',naam:'Lichte keukenaanpassing',cat:'comfort',vp:false,wens:false,comfort:true,
+   bruto:3000,subsidie:0,besp:0,waarde:0,tvt:null,
+   tip:'Gedeeltelijke aanpassing — geen volledige renovatie. Puur voor wooncomfort en gebruiksgemak.',
+   risico:null,info:'Geen subsidie. Geen verwachte waardestijging. Eigen keuze voor leefbaarheid.',m2:false},
 ];
 
 const CATS={isolatie:'cat-isolatie',dak:'cat-dak',installatie:'cat-installatie',uitbreiding:'cat-uitbreiding',comfort:'cat-comfort'};
 
-// ══ STATE ══
 function laad(){
-  try{const s=localStorage.getItem('verd_p52_v1');if(s)return JSON.parse(s);}catch(e){}
+  try{const s=localStorage.getItem('verd_p52_v2');if(s)return JSON.parse(s);}catch(e){}
   const st={sel:{},off:{},m2s:{},notities:'',open:{}};
   DATA.forEach(m=>{st.sel[m.id]=m.vp;});
   return st;
 }
-function sla(){try{localStorage.setItem('verd_p52_v1',JSON.stringify(st));}catch(e){}}
+function sla(){try{localStorage.setItem('verd_p52_v2',JSON.stringify(st));}catch(e){}}
 let st=laad();
 
-// ══ UTILS ══
 function fmt(n){if(isNaN(n)||n===null)return'—';return'€'+Math.round(n).toLocaleString('nl-NL');}
 function set(id,v){const el=document.getElementById(id);if(el)el.textContent=v;}
 
-// ══ BEREKENINGEN ══
 function bereken(){
   const actief=DATA.filter(m=>st.sel[m.id]);
   let bruto=0,isde=0,besp=0,waarde=0;
@@ -386,14 +368,12 @@ function updateTotalen(){
   });
 }
 
-// ══ INTERACTIE ══
 function toggle(id){const m=DATA.find(x=>x.id===id);if(m.vp)return;st.sel[id]=!st.sel[id];sla();renderKaart(id);updateTotalen();}
 function toggleOpen(id){st.open[id]=!st.open[id];sla();renderKaart(id);}
 function setOff(id,v){st.off[id]=v;sla();updateTotalen();}
 function setM2(id,v){st.m2s[id]=v;sla();updateTotalen();}
 function slaNotities(){st.notities=document.getElementById('notities').value;sla();}
 
-// ══ RENDER KAART ══
 function renderKaart(id){
   const el=document.getElementById('k-'+id);if(!el)return;
   const m=DATA.find(x=>x.id===id);
@@ -410,7 +390,7 @@ function renderKaart(id){
   const vink=(aan||m.vp)?'✓':'';
   const badges=(m.vp?'<span class="badge bv">Verplicht</span>':'')+(m.wens?'<span class="badge bw">Wens</span>':'')+(m.comfort?'<span class="badge bc">Comfort</span>':'');
   const offHad=(o!==undefined&&o!=='');
-  const sumtxt=[m.besp>0? fmt(m.besp)+'/jr besparing':'',fmt(m.bruto)+' bruto'].filter(Boolean).join(' · ');
+  const sumtxt=[m.besp>0? fmt(m.besp)+'/jr besparing':'',fmt(offHad? parseFloat(o):m.bruto)+' bruto'].filter(Boolean).join(' · ');
   const whtml=m.m2? `<span id="w-${id}">+${fmt(m2v*(m.wpm2||0))}</span>`:(m.waarde>0? '+'+fmt(m.waarde):'—');
   const m2html=m.m2? `<div class="m2r"><span class="m2l">📐 ${m.m2label}</span><input class="m2i" type="number" min="1" max="60" value="${m2v}" onclick="event.stopPropagation()" oninput="setM2('${id}',this.value)"><span style="font-size:13px;color:var(--g-mid)">m²</span></div>`:'';
 
@@ -430,10 +410,16 @@ function renderKaart(id){
       ${m.risico?`<div class="krisico">⚠ ${m.risico}</div>`:''}
       ${m.info?`<div class="kinfo">💡 ${m.info}</div>`:''}
       ${m2html}
-      <div class="bruto-w">
-        <span class="bruto-l">Bruto kosten</span>
-        ${offHad?'<span class="off-b">Offerte ingevuld</span>':''}
-        <input class="bruto-i" type="number" value="${offHad?o:m.bruto}" onclick="event.stopPropagation()" oninput="setOff('${id}',this.value)">
+      <div class="offerte-sectie">
+        <div class="offerte-titel">
+          ✏️ Jouw offertebedrag
+          ${offHad?'<span class="offerte-had">✓ Offerte ingevuld</span>':''}
+        </div>
+        <input class="bruto-i" type="number" value="${offHad?o:m.bruto}"
+          onclick="event.stopPropagation()"
+          oninput="setOff('${id}',this.value)"
+          placeholder="Vul offertebedrag in">
+        <div class="bruto-hint">${offHad? 'Offerte ingevuld — schatting vervangen':'Schatting — vervang met echte offerte'}</div>
       </div>
       <div class="cijfers">
         <div class="cijfer"><div class="c-l">ISDE subsidie</div><div class="c-v groen">${m.subsidie>0? '-'+fmt(m.subsidie):'—'}</div></div>
@@ -447,7 +433,6 @@ function renderKaart(id){
     </div></div>`;
 }
 
-// ══ TABS ══
 function toonTab(naam,el){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
@@ -455,7 +440,6 @@ function toonTab(naam,el){
   el.classList.add('on');
 }
 
-// ══ RESET ══
 function resetAlles(){
   if(confirm('Alle offertes en keuzes wissen?')){
     st.off={};st.m2s={};st.open={};
@@ -464,7 +448,6 @@ function resetAlles(){
   }
 }
 
-// ══ RENDER ALLES ══
 function renderAlles(){
   Object.values(CATS).forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML='';});
   DATA.forEach(m=>{
