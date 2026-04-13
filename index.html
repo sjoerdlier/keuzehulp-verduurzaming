@@ -7,40 +7,29 @@
 <title>Keuzehulp Verduurzaming · Parallelweg 52</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-
-  /* ── LIGHT MODE (default) ── */
   :root{
     --g-dark:#1B4332;--g-mid:#2D6A4F;--g-light:#40916C;
     --g-mint:#95D5B2;--g-pale:#f0f7f4;
     --oranje:#c9430a;--geel:#ffb347;--blauw:#1a5276;--blauw-pale:#eaf4fb;
     --bg:#f5f2ec;--kaart:#fff;--rand:#e0dbd0;
     --tekst:#1a1a1a;--sub:#666;--sub2:#888;
-    --input-bg:#fffbf0;--input-rand:#e0dbd0;
-    --sectie-bg:#f5f2ec;
+    --input-bg:#fffbf0;--offerte-bg:#f0f7f4;--offerte-rand:var(--g-light);
+    --risico-bg:#fff5f5;--info-bg:#eaf4fb;--sectie-bg:#f5f2ec;
     --tab-bg:#fff;--tab-rand:#e0dbd0;
-    --hero-bg:var(--g-dark);
-    --offerte-bg:#f0f7f4;--offerte-rand:var(--g-light);
-    --risico-bg:#fff5f5;--info-bg:#eaf4fb;
     --radius:12px;--shadow:0 2px 8px rgba(64,145,108,.12);
-    --transition: background .25s, color .25s, border-color .25s;
+    --transition:background .25s,color .25s,border-color .25s;
   }
-
-  /* ── DARK MODE ── */
   html.dark{
     --bg:#0f1a14;--kaart:#1a2820;--rand:#2a3d30;
     --tekst:#e8f5ee;--sub:#9ab5a0;--sub2:#6a8f72;
-    --input-bg:#1f2f24;--input-rand:#3a5540;
-    --sectie-bg:#0f1a14;
-    --tab-bg:#1a2820;--tab-rand:#2a3d30;
     --offerte-bg:#1a2f22;--offerte-rand:#40916C;
-    --risico-bg:#2a1a14;--info-bg:#14202a;
+    --risico-bg:#2a1a14;--info-bg:#14202a;--sectie-bg:#0f1a14;
+    --tab-bg:#1a2820;--tab-rand:#2a3d30;
     --shadow:0 2px 8px rgba(0,0,0,.4);
   }
-
   html{scroll-behavior:smooth}
   body{font-family:Georgia,serif;background:var(--bg);color:var(--tekst);min-height:100vh;padding-bottom:60px;transition:var(--transition)}
 
-  /* ── HEADER ── */
   header{background:var(--g-dark);color:#fff;padding:18px 16px 0;position:sticky;top:0;z-index:200;box-shadow:0 2px 16px rgba(0,0,0,.35)}
   .h-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:10px}
   .h-left{flex:1;min-width:0}
@@ -48,26 +37,10 @@
   header h1{font-size:20px;font-weight:normal}
   .h-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
   .h-meta{font-size:10px;color:var(--g-mint);font-family:sans-serif;letter-spacing:1px;text-align:right;line-height:1.7}
-
-  /* ── DARK MODE BUTTON ── */
-  .dm-btn{
-    background:rgba(255,255,255,.12);
-    border:1px solid rgba(255,255,255,.2);
-    border-radius:20px;
-    padding:5px 12px;
-    font-size:13px;
-    cursor:pointer;
-    color:#fff;
-    font-family:sans-serif;
-    display:flex;align-items:center;gap:5px;
-    transition:background .2s;
-    white-space:nowrap;
-    flex-shrink:0;
-  }
+  .dm-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:5px 12px;font-size:13px;cursor:pointer;color:#fff;font-family:sans-serif;display:flex;align-items:center;gap:5px;transition:background .2s;white-space:nowrap;flex-shrink:0}
   .dm-btn:active{background:rgba(255,255,255,.25)}
   html.dark .dm-btn{background:rgba(149,213,178,.15);border-color:rgba(149,213,178,.3)}
 
-  /* ── TBAR ── */
   .tbar{background:var(--g-mid);display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.1)}
   .ti{text-align:center;padding:10px 4px;border-right:1px solid rgba(255,255,255,.1)}
   .ti:last-child{border-right:none}
@@ -76,29 +49,24 @@
   .pos{color:var(--g-mint)!important}
   .neg{color:var(--geel)!important}
 
-  /* ── TABS ── */
   .tabs{display:flex;background:var(--tab-bg);border-bottom:2px solid var(--tab-rand);position:sticky;top:110px;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;transition:var(--transition)}
   .tabs::-webkit-scrollbar{display:none}
   .tab{flex:1;min-width:75px;padding:12px 6px;text-align:center;font-size:11px;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;color:var(--sub2);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:all .2s;user-select:none}
   .tab.on{color:var(--g-light);border-bottom-color:var(--g-light);font-weight:bold}
 
-  /* ── PANELS ── */
   .panel{display:none}
   .panel.on{display:block}
 
-  /* ── SECTIE ── */
   .sectie{padding:16px;background:var(--sectie-bg);transition:var(--transition)}
   .s-titel{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--g-light);margin-bottom:12px;display:flex;align-items:center;gap:8px;font-family:sans-serif}
   .s-titel::after{content:'';flex:1;height:1px;background:var(--rand)}
 
-  /* ── KAART ── */
   .kaart{background:var(--kaart);border-radius:var(--radius);margin-bottom:10px;border:1.5px solid var(--rand);overflow:hidden;transition:border-color .2s,box-shadow .2s,opacity .2s,background .25s}
   .kaart.aan{border-color:var(--g-light);box-shadow:var(--shadow)}
   .kaart.vp{border-color:var(--g-dark)}
   html.dark .kaart.vp{border-color:var(--g-light)}
   .kaart.uit{opacity:.45}
   .kaart.wstijl{border-style:dashed}
-
   .k-h{display:flex;align-items:center;padding:14px 14px 12px;gap:12px;cursor:pointer;user-select:none;-webkit-user-select:none}
   .check{width:24px;height:24px;border-radius:7px;border:2px solid var(--rand);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;color:#fff;transition:all .2s}
   .kaart.aan .check{background:var(--g-light);border-color:var(--g-light)}
@@ -118,21 +86,17 @@
   .k-sum{font-size:12px;color:var(--sub);margin-top:2px}
   .chev{font-size:12px;color:var(--sub2);transition:transform .3s;flex-shrink:0}
   .kaart.open .chev{transform:rotate(180deg)}
-
   .k-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
   .kaart.open .k-body{max-height:900px}
   .k-body-in{padding:14px 14px 16px 50px;border-top:1px solid var(--rand)}
-
   .ktip{font-size:13px;color:var(--sub);margin-bottom:10px;line-height:1.6}
   .krisico{font-size:12px;color:var(--oranje);margin-bottom:10px;padding:8px 10px;background:var(--risico-bg);border-radius:6px;border-left:3px solid var(--oranje)}
   .kinfo{font-size:12px;color:#2980b9;margin-bottom:10px;padding:8px 10px;background:var(--info-bg);border-radius:6px;border-left:3px solid #2980b9}
   html.dark .kinfo{color:#7ab8e0}
-
   .m2r{display:flex;align-items:center;gap:8px;margin-bottom:12px;background:var(--offerte-bg);border-radius:8px;padding:10px 12px}
   .m2l{font-size:13px;color:var(--g-light);flex:1}
   .m2i{width:66px;border:1.5px solid var(--g-light);border-radius:6px;padding:6px 10px;font-size:14px;font-family:Georgia,serif;text-align:center;background:var(--kaart);color:var(--tekst)}
   .m2i:focus{outline:none;border-color:var(--g-dark)}
-
   .offerte-sectie{background:var(--offerte-bg);border-radius:10px;padding:12px;margin-bottom:10px;border:1.5px solid var(--offerte-rand)}
   .offerte-titel{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--g-light);font-family:sans-serif;margin-bottom:8px;display:flex;align-items:center;gap:6px}
   .offerte-had{font-size:10px;background:#fffbf0;border:1px solid #e0c870;color:#8a6c00;border-radius:4px;padding:2px 6px;font-family:sans-serif}
@@ -140,18 +104,15 @@
   .bruto-i{width:100%;border:1.5px solid var(--g-light);border-radius:8px;padding:10px 14px;font-size:16px;font-family:Georgia,serif;background:var(--kaart);color:var(--tekst);text-align:right;-webkit-appearance:none}
   .bruto-i:focus{outline:none;border-color:var(--g-dark);box-shadow:0 0 0 3px rgba(64,145,108,.2)}
   .bruto-hint{font-size:11px;color:var(--sub2);font-family:sans-serif;margin-top:5px;text-align:right}
-
   .cijfers{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
   .cijfer{background:var(--sectie-bg);border-radius:8px;padding:10px 8px;text-align:center}
   .c-l{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--sub2);font-family:sans-serif;margin-bottom:5px}
   .c-v{font-size:14px;font-weight:bold}
   .groen{color:var(--g-light)}
   .dgroen{color:var(--g-mint)}
-
   .extra-r{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
   .extra-i{font-size:12px;color:var(--sub);font-family:sans-serif}
 
-  /* ── TOTAAL ── */
   .tot-p{padding:16px}
   .tags-blok{background:var(--kaart);border-radius:var(--radius);padding:16px;margin-bottom:16px;border:1px solid var(--rand);transition:var(--transition)}
   .tags-t{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--g-light);font-family:sans-serif;margin-bottom:10px}
@@ -159,7 +120,6 @@
   .tag{background:var(--offerte-bg);border:1px solid var(--g-light);border-radius:20px;padding:5px 12px;font-size:12px;color:var(--g-mint);font-family:sans-serif}
   .tag.w{background:var(--sectie-bg);border-color:#c8b89a;color:#c8b89a}
   .tag.c{background:var(--info-bg);border-color:#2980b9;color:#7ab8e0}
-
   .hero{background:var(--g-dark);border-radius:16px;padding:24px 18px;color:#fff;margin-bottom:16px}
   .hero h2{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--g-mint);margin-bottom:20px;font-weight:normal;font-family:sans-serif}
   .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
@@ -172,25 +132,21 @@
   .cf-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .cf-l{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--g-mint);font-family:sans-serif;margin-bottom:4px}
   .cf-v{font-size:19px;font-weight:bold}
-
   .not-blok{background:var(--kaart);border-radius:var(--radius);padding:16px;margin-bottom:16px;border:1px solid var(--rand);transition:var(--transition)}
   .not-blok h3{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--g-light);font-family:sans-serif;margin-bottom:10px}
   .not-i{width:100%;border:1.5px solid var(--rand);border-radius:8px;padding:10px 12px;font-size:13px;font-family:Georgia,serif;background:var(--sectie-bg);color:var(--tekst);resize:vertical;min-height:80px;transition:var(--transition)}
   .not-i:focus{outline:none;border-color:var(--g-light)}
-
   .leg{background:var(--kaart);border-radius:var(--radius);padding:16px;margin-bottom:16px;border:1px solid var(--rand);font-size:11px;color:var(--sub);font-family:sans-serif;line-height:1.9;transition:var(--transition)}
   .leg strong{color:var(--tekst)}
-
   .reset-btn{display:block;width:100%;background:transparent;border:1.5px solid var(--rand);border-radius:8px;padding:12px;font-size:12px;color:var(--sub);cursor:pointer;font-family:sans-serif;text-align:center;transition:all .2s}
   .reset-btn:active{border-color:var(--oranje);color:var(--oranje)}
 
-  /* ── PLANNING ── */
   .plan-p{padding:16px}
   .agenda{background:var(--kaart);border-radius:var(--radius);padding:16px;margin-bottom:16px;border:1px solid var(--rand);transition:var(--transition)}
   .agenda h3{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--g-light);font-family:sans-serif;margin-bottom:12px}
   .ag-i{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--rand)}
   .ag-i:last-child{border-bottom:none}
-  .ag-d{color:#fff;border-radius:8px;padding:6px 10px;font-family:sans-serif;font-weight:bold;text-align:center;min-width:52px}
+  .ag-d{color:#fff;border-radius:8px;padding:6px 10px;font-family:sans-serif;font-weight:bold;text-align:center;min-width:52px;flex-shrink:0}
   .ag-dag{font-size:18px;line-height:1}
   .ag-mnd{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--g-mint)}
   .ag-t .a-t{font-size:14px;font-weight:bold;color:var(--tekst)}
@@ -281,21 +237,44 @@
 
 <div class="panel" id="panel-plan">
   <div class="plan-p">
+
     <div class="agenda">
       <h3>Komende afspraken</h3>
+
+      <div class="ag-i">
+        <div class="ag-d" style="background:var(--g-light)"><div class="ag-mnd">Apr</div><div class="ag-dag">15</div></div>
+        <div class="ag-t">
+          <div class="a-t">Ruiten Isolatie — inspectie</div>
+          <div class="a-s">15:00 · Parallelweg 52 · Via Klimaatstarters · Spouw, vloer, dak beoordeling</div>
+        </div>
+      </div>
+
       <div class="ag-i">
         <div class="ag-d" style="background:var(--g-dark)"><div class="ag-mnd">Apr</div><div class="ag-dag">22</div></div>
-        <div class="ag-t"><div class="a-t">DuurzaamXL</div><div class="a-s">Via de Hypotheker · Offerte + benchmark</div></div>
+        <div class="ag-t">
+          <div class="a-t">DuurzaamXL</div>
+          <div class="a-s">Via de Hypotheker · Offerte + benchmark</div>
+        </div>
       </div>
+
       <div class="ag-i">
         <div class="ag-d" style="background:var(--g-dark)"><div class="ag-mnd">Mei</div><div class="ag-dag">7</div></div>
-        <div class="ag-t"><div class="a-t">Klimaatstarters</div><div class="a-s">VHF-subsidie bevestigen · Traject starten</div></div>
+        <div class="ag-t">
+          <div class="a-t">Klimaatstarters</div>
+          <div class="a-s">VHF-subsidie bevestigen · Traject starten</div>
+        </div>
       </div>
+
       <div class="ag-i">
         <div class="ag-d" style="background:#888"><div class="ag-mnd">Mei</div><div class="ag-dag">?</div></div>
-        <div class="ag-t"><div class="a-t">WoonWijzerWinkel</div><div class="a-s">Marktplein 5, Wormerveer · 075-2019007</div></div>
+        <div class="ag-t">
+          <div class="a-t">WoonWijzerWinkel</div>
+          <div class="a-s">Marktplein 5, Wormerveer · 075-2019007</div>
+        </div>
       </div>
+
     </div>
+
     <div class="agenda">
       <h3>Subsidie deadlines</h3>
       <div class="ag-i">
@@ -311,107 +290,57 @@
         <div class="ag-t"><div class="a-t">ISDE — doorlopend</div><div class="a-s">Aanvragen na uitvoering · tot 31 dec 2030</div></div>
       </div>
     </div>
+
     <div class="agenda">
       <h3>Actielijst</h3>
       <div class="acties">
         <div>✅ Label F bevestigd via EP-Online</div>
         <div>✅ WOZ-waarde onder €477.000</div>
         <div>✅ Aangemeld bij Klimaatstarters</div>
+        <div>✅ Afspraak Ruiten Isolatie 15 april</div>
         <div>✅ Afspraak DuurzaamXL 22 april</div>
         <div>✅ Afspraak Klimaatstarters 7 mei</div>
         <div>⏳ WoonWijzerWinkel afspraak</div>
-        <div>⏳ Spouwbreedte laten inspecteren</div>
         <div>⏳ Offertes ophalen en invullen in deze tool</div>
         <div>⏳ Gedeeld dak bespreken met John</div>
       </div>
     </div>
+
   </div>
 </div>
 
 <script>
 const VHF=7500,LAI=1500,HYP10K=50;
-
 const DATA=[
-  {id:'spouwmuur',naam:'Spouwmuurisolatie',cat:'isolatie',vp:false,wens:false,comfort:false,
-   bruto:2500,subsidie:2235,besp:550,waarde:5000,tvt:1,
-   tip:'~70m², afhankelijk van spouwbreedte. Eerst inspectie nodig bij jaren \'30 woning.',
-   risico:'Spouw mogelijk te smal of gevuld met puin. Laat inspecteren vóór offerte.',info:null,m2:false},
-  {id:'vloer',naam:'Vloerisolatie (kruipruimte)',cat:'isolatie',vp:false,wens:false,comfort:false,
-   bruto:2500,subsidie:1760,besp:280,waarde:3000,tvt:3,
-   tip:'Via kruipruimte. Direct comforteffect: geen koude voeten meer.',
-   risico:'Mogelijk asbest in vloerconstructie. Check bij inspectie.',info:null,m2:false},
-  {id:'glas',naam:'HR++ glas (bestaande kozijnen)',cat:'isolatie',vp:false,wens:false,comfort:false,
-   bruto:4000,subsidie:1400,besp:360,waarde:4000,tvt:7,
-   tip:'~20m², houten kozijnen behouden. Beter passend bij karakter woning dan kunststof.',
-   risico:'Kozijnen mogelijk te smal voor dubbelglas.',info:null,m2:false},
-  {id:'dak',naam:'Dakrenovatie + buitenisolatie',cat:'dak',vp:true,wens:false,comfort:false,
-   bruto:15000,subsidie:1950,besp:400,waarde:10000,tvt:8,
-   tip:'Dak moet toch aan vanwege verschoven pannen. Buitenisolatie meenemen = geen ruimteverlies in slaapkamer op zolder.',
-   risico:'Faunaonderzoek verplicht (vleermuizen/gierzwaluwen).',
-   info:'Bespreek met John: gedeeld dak tegelijk aanpakken = 10-15% korting.',m2:false},
-  {id:'dkv',naam:'Dakkapel voorkant vervangen',cat:'dak',vp:true,wens:false,comfort:false,
-   bruto:6500,subsidie:0,besp:0,waarde:5000,tvt:null,
-   tip:'Vervanging noodzakelijk. Geen energiesubsidie — puur onderhoud.',
-   risico:null,info:null,m2:false},
-  {id:'dka',naam:'Dakkapel achterkant (nieuw)',cat:'dak',vp:false,wens:true,comfort:false,
-   bruto:11000,subsidie:0,besp:0,waarde:8000,tvt:null,
-   tip:'Wens. Nu meepakken als steigers staan = 30-40% goedkoper dan later apart.',
-   risico:null,info:null,m2:false},
-  {id:'wp',naam:'Hybride warmtepomp (4kW)',cat:'installatie',vp:false,wens:false,comfort:false,
-   bruto:6250,subsidie:2525,besp:625,waarde:5000,tvt:6,
-   tip:'Combineert met bestaande cv-ketel. Bespaart 60-70% op gas. A+++ label = hogere subsidie.',
-   risico:'Radiatoren controleren op geschiktheid. Buitenunit geluid — afstemmen met John over plaatsing.',info:null,m2:false},
-  {id:'vent',naam:'Energiezuinige ventilatie',cat:'installatie',vp:false,wens:false,comfort:false,
-   bruto:1250,subsidie:400,besp:0,waarde:1000,tvt:null,
-   tip:'Noodzakelijk na isoleren — luchtdichter huis zonder ventilatie geeft vochtproblemen.',
-   risico:null,info:'€400 ISDE alleen in combinatie met isolatiemaatregel.',m2:false},
-  {id:'serre',naam:'Serre aanbouwen',cat:'uitbreiding',vp:false,wens:true,comfort:false,
-   bruto:18000,subsidie:0,besp:0,waarde:0,tvt:null,
-   tip:'Extra leefruimte. Geen energiesubsidie. Waardestijging afhankelijk van m² en kwaliteit uitvoering.',
-   risico:null,info:'Vergunning vereist boven ~6m². Pas m² aan naar eigen wens.',
-   m2:true,m2label:'Extra woonoppervlak',m2default:12,wpm2:2500},
-  {id:'keuken',naam:'Lichte keukenaanpassing',cat:'comfort',vp:false,wens:false,comfort:true,
-   bruto:3000,subsidie:0,besp:0,waarde:0,tvt:null,
-   tip:'Gedeeltelijke aanpassing — geen volledige renovatie. Puur voor wooncomfort en gebruiksgemak.',
-   risico:null,info:'Geen subsidie. Geen verwachte waardestijging. Eigen keuze voor leefbaarheid.',m2:false},
+  {id:'spouwmuur',naam:'Spouwmuurisolatie',cat:'isolatie',vp:false,wens:false,comfort:false,bruto:2500,subsidie:2235,besp:550,waarde:5000,tvt:1,tip:'~70m², afhankelijk van spouwbreedte. Eerst inspectie nodig bij jaren \'30 woning.',risico:'Spouw mogelijk te smal of gevuld met puin. Laat inspecteren vóór offerte.',info:null,m2:false},
+  {id:'vloer',naam:'Vloerisolatie (kruipruimte)',cat:'isolatie',vp:false,wens:false,comfort:false,bruto:2500,subsidie:1760,besp:280,waarde:3000,tvt:3,tip:'Via kruipruimte. Direct comforteffect: geen koude voeten meer.',risico:'Mogelijk asbest in vloerconstructie. Check bij inspectie.',info:null,m2:false},
+  {id:'glas',naam:'HR++ glas (bestaande kozijnen)',cat:'isolatie',vp:false,wens:false,comfort:false,bruto:4000,subsidie:1400,besp:360,waarde:4000,tvt:7,tip:'~20m², houten kozijnen behouden. Beter passend bij karakter woning dan kunststof.',risico:'Kozijnen mogelijk te smal voor dubbelglas.',info:null,m2:false},
+  {id:'dak',naam:'Dakrenovatie + buitenisolatie',cat:'dak',vp:true,wens:false,comfort:false,bruto:15000,subsidie:1950,besp:400,waarde:10000,tvt:8,tip:'Dak moet toch aan vanwege verschoven pannen. Buitenisolatie meenemen = geen ruimteverlies in slaapkamer op zolder.',risico:'Faunaonderzoek verplicht (vleermuizen/gierzwaluwen).',info:'Bespreek met John: gedeeld dak tegelijk aanpakken = 10-15% korting.',m2:false},
+  {id:'dkv',naam:'Dakkapel voorkant vervangen',cat:'dak',vp:true,wens:false,comfort:false,bruto:6500,subsidie:0,besp:0,waarde:5000,tvt:null,tip:'Vervanging noodzakelijk. Geen energiesubsidie — puur onderhoud.',risico:null,info:null,m2:false},
+  {id:'dka',naam:'Dakkapel achterkant (nieuw)',cat:'dak',vp:false,wens:true,comfort:false,bruto:11000,subsidie:0,besp:0,waarde:8000,tvt:null,tip:'Wens. Nu meepakken als steigers staan = 30-40% goedkoper dan later apart.',risico:null,info:null,m2:false},
+  {id:'wp',naam:'Hybride warmtepomp (4kW)',cat:'installatie',vp:false,wens:false,comfort:false,bruto:6250,subsidie:2525,besp:625,waarde:5000,tvt:6,tip:'Combineert met bestaande cv-ketel. Bespaart 60-70% op gas. A+++ label = hogere subsidie.',risico:'Radiatoren controleren op geschiktheid. Buitenunit geluid — afstemmen met John over plaatsing.',info:null,m2:false},
+  {id:'vent',naam:'Energiezuinige ventilatie',cat:'installatie',vp:false,wens:false,comfort:false,bruto:1250,subsidie:400,besp:0,waarde:1000,tvt:null,tip:'Noodzakelijk na isoleren — luchtdichter huis zonder ventilatie geeft vochtproblemen.',risico:null,info:'€400 ISDE alleen in combinatie met isolatiemaatregel.',m2:false},
+  {id:'serre',naam:'Serre aanbouwen (~9m²)',cat:'uitbreiding',vp:false,wens:true,comfort:false,bruto:42500,subsidie:0,besp:0,waarde:0,tvt:null,tip:'Aluminium/glas aanbouw achterzijde. Inclusief: plateau slopen + nieuwe betonplaat, gedeeltelijke puiverwijdering, aluminium serre, elektrische vloerverwarming, afwerking. Exclusief: vloertegels, elektra/verlichting, zonwering (~€1.500-5.000 extra).',risico:'Vergunning check vereist — Zaanstad heeft eigen regels voor glazen kap. Constructeur nodig als hele pui eruit gaat.',info:'All-in schatting €40.000-€45.000 incl. buffer. Geen subsidie. Geen ISDE of VHF van toepassing.',m2:true,m2label:'Extra woonoppervlak',m2default:9,wpm2:2500},
+  {id:'keuken',naam:'Lichte keukenaanpassing',cat:'comfort',vp:false,wens:false,comfort:true,bruto:3000,subsidie:0,besp:0,waarde:0,tvt:null,tip:'Gedeeltelijke aanpassing — geen volledige renovatie. Puur voor wooncomfort en gebruiksgemak.',risico:null,info:'Geen subsidie. Geen verwachte waardestijging. Eigen keuze voor leefbaarheid.',m2:false},
 ];
-
 const CATS={isolatie:'cat-isolatie',dak:'cat-dak',installatie:'cat-installatie',uitbreiding:'cat-uitbreiding',comfort:'cat-comfort'};
 
-// ── STATE ──
-function laad(){
-  try{const s=localStorage.getItem('verd_p52_v2');if(s)return JSON.parse(s);}catch(e){}
-  const st={sel:{},off:{},m2s:{},notities:'',open:{},dark:false};
-  DATA.forEach(m=>{st.sel[m.id]=m.vp;});
-  return st;
-}
+function laad(){try{const s=localStorage.getItem('verd_p52_v2');if(s)return JSON.parse(s);}catch(e){}const st={sel:{},off:{},m2s:{},notities:'',open:{},dark:false};DATA.forEach(m=>{st.sel[m.id]=m.vp;});return st;}
 function sla(){try{localStorage.setItem('verd_p52_v2',JSON.stringify(st));}catch(e){}}
 let st=laad();
 
-// ── DARK MODE ──
-function applyDark(){
-  const btn=document.getElementById('dm-btn');
-  if(st.dark){
-    document.documentElement.classList.add('dark');
-    if(btn)btn.textContent='☀️ Light';
-  } else {
-    document.documentElement.classList.remove('dark');
-    if(btn)btn.textContent='🌙 Dark';
-  }
-}
+function applyDark(){const btn=document.getElementById('dm-btn');if(st.dark){document.documentElement.classList.add('dark');if(btn)btn.textContent='☀️ Light';}else{document.documentElement.classList.remove('dark');if(btn)btn.textContent='🌙 Dark';}}
 function toggleDark(){st.dark=!st.dark;sla();applyDark();}
 
-// ── UTILS ──
 function fmt(n){if(isNaN(n)||n===null)return'—';return'€'+Math.round(n).toLocaleString('nl-NL');}
 function set(id,v){const el=document.getElementById(id);if(el)el.textContent=v;}
 
-// ── BEREKENINGEN ──
 function bereken(){
   const actief=DATA.filter(m=>st.sel[m.id]);
   let bruto=0,isde=0,besp=0,waarde=0;
   actief.forEach(m=>{
     const o=st.off[m.id],k=(o!==undefined&&o!=='')? parseFloat(o):m.bruto;
-    bruto+=isNaN(k)?0:k; isde+=m.subsidie; besp+=m.besp;
+    bruto+=isNaN(k)?0:k;isde+=m.subsidie;besp+=m.besp;
     if(m.m2){const v=parseFloat(st.m2s[m.id]||m.m2default||0);waarde+=v*(m.wpm2||0);}
     else waarde+=m.waarde;
   });
@@ -425,32 +354,26 @@ function bereken(){
 
 function updateTotalen(){
   const c=bereken();
-  set('bar-bruto',fmt(c.bruto)); set('bar-netto',fmt(c.netto));
-  const cfb=document.getElementById('bar-cf');
-  if(cfb){cfb.textContent=(c.cf>=0?'+':'')+fmt(c.cf);cfb.className='ti-v '+(c.cf>=0?'pos':'neg');}
-  set('t-bruto',fmt(c.bruto)); set('t-isde','-'+fmt(c.isde)); set('t-gem','-'+fmt(c.gem));
-  set('t-netto',fmt(c.netto)); set('t-besp',fmt(c.besp)+'/jr'); set('t-waarde','+'+fmt(c.waarde));
-  set('t-hyp',fmt(c.hyp)+'/mnd');
-  const cfel=document.getElementById('t-cf');
-  if(cfel){cfel.textContent=(c.cf>=0?'+':'')+fmt(c.cf)+'/mnd';cfel.className='cf-v '+(c.cf>=0?'pos':'neg');}
+  set('bar-bruto',fmt(c.bruto));set('bar-netto',fmt(c.netto));
+  const cfb=document.getElementById('bar-cf');if(cfb){cfb.textContent=(c.cf>=0?'+':'')+fmt(c.cf);cfb.className='ti-v '+(c.cf>=0?'pos':'neg');}
+  set('t-bruto',fmt(c.bruto));set('t-isde','-'+fmt(c.isde));set('t-gem','-'+fmt(c.gem));
+  set('t-netto',fmt(c.netto));set('t-besp',fmt(c.besp)+'/jr');set('t-waarde','+'+fmt(c.waarde));set('t-hyp',fmt(c.hyp)+'/mnd');
+  const cfel=document.getElementById('t-cf');if(cfel){cfel.textContent=(c.cf>=0?'+':'')+fmt(c.cf)+'/mnd';cfel.className='cf-v '+(c.cf>=0?'pos':'neg');}
   const tc=document.getElementById('tags-cont'),tl=document.getElementById('tags-teller');
   if(tc)tc.innerHTML=c.actief.map(m=>`<span class="tag${m.comfort?' c':m.wens?' w':''}">${m.naam}</span>`).join('');
   if(tl)tl.textContent=`Geselecteerd (${c.actief.length})`;
   DATA.forEach(m=>{
-    const nel=document.getElementById('netto-'+m.id);
-    if(nel){const o=st.off[m.id],k=(o!==undefined&&o!=='')? parseFloat(o):m.bruto;nel.textContent=fmt(Math.max(0,k-m.subsidie));}
+    const nel=document.getElementById('netto-'+m.id);if(nel){const o=st.off[m.id],k=(o!==undefined&&o!=='')? parseFloat(o):m.bruto;nel.textContent=fmt(Math.max(0,k-m.subsidie));}
     if(m.m2){const wel=document.getElementById('w-'+m.id);if(wel){const v=parseFloat(st.m2s[m.id]||m.m2default||0);wel.textContent='+'+fmt(v*(m.wpm2||0));}}
   });
 }
 
-// ── INTERACTIE ──
 function toggle(id){const m=DATA.find(x=>x.id===id);if(m.vp)return;st.sel[id]=!st.sel[id];sla();renderKaart(id);updateTotalen();}
 function toggleOpen(id){st.open[id]=!st.open[id];sla();renderKaart(id);}
 function setOff(id,v){st.off[id]=v;sla();updateTotalen();}
 function setM2(id,v){st.m2s[id]=v;sla();updateTotalen();}
 function slaNotities(){st.notities=document.getElementById('notities').value;sla();}
 
-// ── RENDER KAART ──
 function renderKaart(id){
   const el=document.getElementById('k-'+id);if(!el)return;
   const m=DATA.find(x=>x.id===id);
@@ -458,19 +381,16 @@ function renderKaart(id){
   const o=st.off[id],k=(o!==undefined&&o!=='')? parseFloat(o):m.bruto;
   const netto=Math.max(0,k-m.subsidie);
   const m2v=parseFloat(st.m2s[id]||(m.m2default||0));
-
   let cls='kaart';
   if(m.vp)cls+=' vp';else if(aan)cls+=' aan';else cls+=' uit';
   if(m.wens&&!m.vp)cls+=' wstijl';
   if(open)cls+=' open';
-
   const vink=(aan||m.vp)?'✓':'';
   const badges=(m.vp?'<span class="badge bv">Verplicht</span>':'')+(m.wens?'<span class="badge bw">Wens</span>':'')+(m.comfort?'<span class="badge bc">Comfort</span>':'');
   const offHad=(o!==undefined&&o!=='');
   const sumtxt=[m.besp>0? fmt(m.besp)+'/jr besparing':'',fmt(offHad? parseFloat(o):m.bruto)+' bruto'].filter(Boolean).join(' · ');
   const whtml=m.m2? `<span id="w-${id}">+${fmt(m2v*(m.wpm2||0))}</span>`:(m.waarde>0? '+'+fmt(m.waarde):'—');
   const m2html=m.m2? `<div class="m2r"><span class="m2l">📐 ${m.m2label}</span><input class="m2i" type="number" min="1" max="60" value="${m2v}" onclick="event.stopPropagation()" oninput="setM2('${id}',this.value)"><span style="font-size:13px;color:var(--g-light)">m²</span></div>`:'';
-
   el.className=cls;
   el.innerHTML=`
     <div class="k-h" onclick="toggleOpen('${id}')">
@@ -488,14 +408,8 @@ function renderKaart(id){
       ${m.info?`<div class="kinfo">💡 ${m.info}</div>`:''}
       ${m2html}
       <div class="offerte-sectie">
-        <div class="offerte-titel">
-          ✏️ Jouw offertebedrag
-          ${offHad?'<span class="offerte-had">✓ Offerte ingevuld</span>':''}
-        </div>
-        <input class="bruto-i" type="number" value="${offHad?o:m.bruto}"
-          onclick="event.stopPropagation()"
-          oninput="setOff('${id}',this.value)"
-          placeholder="Vul offertebedrag in">
+        <div class="offerte-titel">✏️ Jouw offertebedrag${offHad?'<span class="offerte-had">✓ Offerte ingevuld</span>':''}</div>
+        <input class="bruto-i" type="number" value="${offHad?o:m.bruto}" onclick="event.stopPropagation()" oninput="setOff('${id}',this.value)" placeholder="Vul offertebedrag in">
         <div class="bruto-hint">${offHad?'Offerte ingevuld — schatting vervangen':'Schatting — vervang met echte offerte'}</div>
       </div>
       <div class="cijfers">
@@ -510,7 +424,6 @@ function renderKaart(id){
     </div></div>`;
 }
 
-// ── TABS ──
 function toonTab(naam,el){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
@@ -518,7 +431,6 @@ function toonTab(naam,el){
   el.classList.add('on');
 }
 
-// ── RESET ──
 function resetAlles(){
   if(confirm('Alle offertes en keuzes wissen?')){
     const dark=st.dark;
@@ -528,7 +440,6 @@ function resetAlles(){
   }
 }
 
-// ── RENDER ALLES ──
 function renderAlles(){
   Object.values(CATS).forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML='';});
   DATA.forEach(m=>{
@@ -537,8 +448,7 @@ function renderAlles(){
     cont.appendChild(div);renderKaart(m.id);
   });
   const nn=document.getElementById('notities');if(nn)nn.value=st.notities||'';
-  updateTotalen();
-  applyDark();
+  updateTotalen();applyDark();
 }
 
 renderAlles();
