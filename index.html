@@ -41,6 +41,22 @@
   .dm-btn:active{background:rgba(255,255,255,.25)}
   html.dark .dm-btn{background:rgba(149,213,178,.15);border-color:rgba(149,213,178,.3)}
 
+  /* ── LABEL METER ── */
+  .labelbar{background:rgba(0,0,0,.25);padding:10px 16px;border-top:1px solid rgba(255,255,255,.08)}
+  .labelbar-inner{display:flex;align-items:center;gap:8px}
+  .lb-titel{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5);font-family:sans-serif;white-space:nowrap;flex-shrink:0}
+  .label-stappen{display:flex;flex:1;gap:3px;align-items:center}
+  .ls{flex:1;height:22px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:bold;font-family:sans-serif;color:rgba(255,255,255,.3);background:rgba(255,255,255,.07);transition:all .35s;border:1px solid rgba(255,255,255,.08)}
+  .ls.bereikt{color:#fff;opacity:.7}
+  .ls.huidig{color:#fff!important;opacity:1;transform:scaleY(1.18);box-shadow:0 0 10px rgba(149,213,178,.5);border-color:rgba(255,255,255,.5);z-index:1;position:relative}
+  .ls.lF{background:#c0392b}.ls.lF.bereikt,.ls.lF.huidig{background:#c0392b}
+  .ls.lE{background:#e67e22}.ls.lE.bereikt,.ls.lE.huidig{background:#e67e22}
+  .ls.lD{background:#f39c12}.ls.lD.bereikt,.ls.lD.huidig{background:#f39c12}
+  .ls.lC{background:#f1c40f}.ls.lC.bereikt,.ls.lC.huidig{background:#f1c40f;color:#333!important}
+  .ls.lB{background:#2ecc71}.ls.lB.bereikt,.ls.lB.huidig{background:#2ecc71}
+  .ls.lA{background:#27ae60}.ls.lA.bereikt,.ls.lA.huidig{background:#27ae60}
+  .lb-tekst{font-size:11px;color:rgba(255,255,255,.75);font-family:sans-serif;white-space:nowrap;flex-shrink:0;text-align:right;min-width:55px}
+
   .tbar{background:var(--g-mid);display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.1)}
   .ti{text-align:center;padding:10px 4px;border-right:1px solid rgba(255,255,255,.1)}
   .ti:last-child{border-right:none}
@@ -49,7 +65,7 @@
   .pos{color:var(--g-mint)!important}
   .neg{color:var(--geel)!important}
 
-  .tabs{display:flex;background:var(--tab-bg);border-bottom:2px solid var(--tab-rand);position:sticky;top:110px;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;transition:var(--transition)}
+  .tabs{display:flex;background:var(--tab-bg);border-bottom:2px solid var(--tab-rand);position:sticky;top:152px;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;transition:var(--transition)}
   .tabs::-webkit-scrollbar{display:none}
   .tab{flex:1;min-width:75px;padding:12px 6px;text-align:center;font-size:11px;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;color:var(--sub2);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:all .2s;user-select:none}
   .tab.on{color:var(--g-light);border-bottom-color:var(--g-light);font-weight:bold}
@@ -178,6 +194,20 @@
     <div class="ti"><div class="ti-l">Bruto</div><div class="ti-v" id="bar-bruto">—</div></div>
     <div class="ti"><div class="ti-l">Netto</div><div class="ti-v" id="bar-netto">—</div></div>
     <div class="ti"><div class="ti-l">Cashflow/mnd</div><div class="ti-v" id="bar-cf">—</div></div>
+  </div>
+  <div class="labelbar">
+    <div class="labelbar-inner">
+      <span class="lb-titel">Label</span>
+      <div class="label-stappen" id="label-stappen">
+        <div class="ls lF" id="ls-F">F</div>
+        <div class="ls lE" id="ls-E">E</div>
+        <div class="ls lD" id="ls-D">D</div>
+        <div class="ls lC" id="ls-C">C</div>
+        <div class="ls lB" id="ls-B">B</div>
+        <div class="ls lA" id="ls-A">A</div>
+      </div>
+      <span class="lb-tekst" id="lb-tekst">Label F</span>
+    </div>
   </div>
 </header>
 
@@ -352,6 +382,53 @@ function bereken(){
   return{bruto,isde,gem,netto,besp,waarde,hyp,cf,actief};
 }
 
+// ── LABEL METER ──
+function berekenLabel(actief){
+  const scores={spouwmuur:1.5,vloer:1,glas:1,dak:2,dkv:0,dka:0,wp:2,vent:0,serre:0,keuken:0};
+  let score=0;
+  actief.forEach(m=>{score+=scores[m.id]||0;});
+  if(score>=7.5)return'A';
+  if(score>=6)return'B';
+  if(score>=4.5)return'C';
+  if(score>=3)return'D';
+  if(score>=1.5)return'E';
+  return'F';
+}
+
+function updateLabel(actief){
+  const volgorde=['F','E','D','C','B','A'];
+  const huidig=berekenLabel(actief);
+  const hidx=volgorde.indexOf(huidig);
+  volgorde.forEach((l,i)=>{
+    const el=document.getElementById('ls-'+l);
+    if(!el)return;
+    el.className='ls l'+l;
+    if(i<hidx)el.classList.add('bereikt');
+    else if(i===hidx)el.classList.add('huidig');
+  });
+  const tekst=document.getElementById('lb-tekst');
+  if(tekst){
+    if(huidig==='A')tekst.textContent='🎯 Label A!';
+    else{const nog=volgorde.slice(hidx+1);tekst.textContent=`→ ${huidig} (${noch_nodig(actief)})`;}
+  }
+}
+
+function noch_nodig(actief){
+  const heeftWP=actief.some(m=>m.id==='wp');
+  const heeftDak=actief.some(m=>m.id==='dak');
+  const heeftSpouw=actief.some(m=>m.id==='spouwmuur');
+  const heeftVloer=actief.some(m=>m.id==='vloer');
+  const heeftGlas=actief.some(m=>m.id==='glas');
+  const ontbreekt=[];
+  if(!heeftWP)ontbreekt.push('warmtepomp');
+  if(!heeftDak)ontbreekt.push('dak');
+  if(!heeftSpouw)ontbreekt.push('spouwmuur');
+  if(!heeftVloer)ontbreekt.push('vloer');
+  if(!heeftGlas)ontbreekt.push('glas');
+  if(ontbreekt.length===0)return'compleet';
+  return'voeg '+ontbreekt[0]+' toe';
+}
+
 function updateTotalen(){
   const c=bereken();
   set('bar-bruto',fmt(c.bruto));set('bar-netto',fmt(c.netto));
@@ -366,6 +443,7 @@ function updateTotalen(){
     const nel=document.getElementById('netto-'+m.id);if(nel){const o=st.off[m.id],k=(o!==undefined&&o!=='')? parseFloat(o):m.bruto;nel.textContent=fmt(Math.max(0,k-m.subsidie));}
     if(m.m2){const wel=document.getElementById('w-'+m.id);if(wel){const v=parseFloat(st.m2s[m.id]||m.m2default||0);wel.textContent='+'+fmt(v*(m.wpm2||0));}}
   });
+  updateLabel(c.actief);
 }
 
 function toggle(id){const m=DATA.find(x=>x.id===id);if(m.vp)return;st.sel[id]=!st.sel[id];sla();renderKaart(id);updateTotalen();}
