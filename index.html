@@ -345,8 +345,8 @@ const DATA=[
   {id:'spouwmuur',naam:'Spouwmuurisolatie',cat:'isolatie',vp:false,wens:false,comfort:false,bruto:2500,subsidie:2235,besp:550,waarde:5000,tvt:1,tip:'~70m², afhankelijk van spouwbreedte. Eerst inspectie nodig bij jaren \'30 woning.',risico:'Spouw mogelijk te smal of gevuld met puin. Laat inspecteren vóór offerte.',info:null,m2:false},
   {id:'vloer',naam:'Vloerisolatie (kruipruimte)',cat:'isolatie',vp:false,wens:false,comfort:false,bruto:2500,subsidie:1760,besp:280,waarde:3000,tvt:3,tip:'Via kruipruimte. Direct comforteffect: geen koude voeten meer.',risico:'Mogelijk asbest in vloerconstructie. Check bij inspectie.',info:null,m2:false},
   {id:'glas',naam:'HR++ glas (bestaande kozijnen)',cat:'isolatie',vp:false,wens:false,comfort:false,bruto:4000,subsidie:1400,besp:360,waarde:4000,tvt:7,tip:'~20m², houten kozijnen behouden. Beter passend bij karakter woning dan kunststof.',risico:'Kozijnen mogelijk te smal voor dubbelglas.',info:null,m2:false},
-  {id:'dak',naam:'Dakrenovatie + buitenisolatie',cat:'dak',vp:true,wens:false,comfort:false,bruto:15000,subsidie:1950,besp:400,waarde:10000,tvt:8,tip:'Dak moet toch aan vanwege verschoven pannen. Buitenisolatie meenemen = geen ruimteverlies in slaapkamer op zolder.',risico:'Faunaonderzoek verplicht (vleermuizen/gierzwaluwen).',info:'Bespreek met John: gedeeld dak tegelijk aanpakken = 10-15% korting.',m2:false},
-  {id:'dkv',naam:'Dakkapel voorkant vervangen',cat:'dak',vp:true,wens:false,comfort:false,bruto:6500,subsidie:0,besp:0,waarde:5000,tvt:null,tip:'Vervanging noodzakelijk. Geen energiesubsidie — puur onderhoud.',risico:null,info:null,m2:false},
+  {id:'dak',naam:'Dakrenovatie + buitenisolatie',cat:'dak',vp:false,urgent:true,wens:false,comfort:false,bruto:15000,subsidie:1950,besp:400,waarde:10000,tvt:8,tip:'Dak moet toch aan vanwege verschoven pannen. Buitenisolatie meenemen = geen ruimteverlies in slaapkamer op zolder.',risico:'Faunaonderzoek verplicht (vleermuizen/gierzwaluwen).',info:'Bespreek met John: gedeeld dak tegelijk aanpakken = 10-15% korting.',m2:false},
+  {id:'dkv',naam:'Dakkapel voorkant vervangen',cat:'dak',vp:false,urgent:true,wens:false,comfort:false,bruto:6500,subsidie:0,besp:0,waarde:5000,tvt:null,tip:'Vervanging noodzakelijk. Geen energiesubsidie — puur onderhoud.',risico:null,info:null,m2:false},
   {id:'dka',naam:'Dakkapel achterkant (nieuw)',cat:'dak',vp:false,wens:true,comfort:false,bruto:11000,subsidie:0,besp:0,waarde:8000,tvt:null,tip:'Wens. Nu meepakken als steigers staan = 30-40% goedkoper dan later apart.',risico:null,info:null,m2:false},
   {id:'wp',naam:'Hybride warmtepomp (4kW)',cat:'installatie',vp:false,wens:false,comfort:false,bruto:6250,subsidie:2525,besp:625,waarde:5000,tvt:6,tip:'Combineert met bestaande cv-ketel. Bespaart 60-70% op gas. A+++ label = hogere subsidie.',risico:'Radiatoren controleren op geschiktheid. Buitenunit geluid — afstemmen met John over plaatsing.',info:null,m2:false},
   {id:'vent',naam:'Energiezuinige ventilatie',cat:'installatie',vp:false,wens:false,comfort:false,bruto:1250,subsidie:400,besp:0,waarde:1000,tvt:null,tip:'Noodzakelijk na isoleren — luchtdichter huis zonder ventilatie geeft vochtproblemen.',risico:null,info:'€400 ISDE alleen in combinatie met isolatiemaatregel.',m2:false},
@@ -355,7 +355,7 @@ const DATA=[
 ];
 const CATS={isolatie:'cat-isolatie',dak:'cat-dak',installatie:'cat-installatie',uitbreiding:'cat-uitbreiding',comfort:'cat-comfort'};
 
-function laad(){try{const s=localStorage.getItem('verd_p52_v2');if(s)return JSON.parse(s);}catch(e){}const st={sel:{},off:{},m2s:{},notities:'',open:{},dark:false};DATA.forEach(m=>{st.sel[m.id]=m.vp;});return st;}
+function laad(){try{const s=localStorage.getItem('verd_p52_v2');if(s)return JSON.parse(s);}catch(e){}const st={sel:{},off:{},m2s:{},notities:'',open:{},dark:false};DATA.forEach(m=>{st.sel[m.id]=m.vp||m.urgent||false;});return st;}
 function sla(){try{localStorage.setItem('verd_p52_v2',JSON.stringify(st));}catch(e){}}
 let st=laad();
 
@@ -464,7 +464,7 @@ function renderKaart(id){
   if(m.wens&&!m.vp)cls+=' wstijl';
   if(open)cls+=' open';
   const vink=(aan||m.vp)?'✓':'';
-  const badges=(m.vp?'<span class="badge bv">Verplicht</span>':'')+(m.wens?'<span class="badge bw">Wens</span>':'')+(m.comfort?'<span class="badge bc">Comfort</span>':'');
+  const badges=(m.vp?'<span class="badge bv">Verplicht</span>':'')+(m.urgent?'<span class="badge bu">Urgent</span>':'')+(m.wens?'<span class="badge bw">Wens</span>':'')+(m.comfort?'<span class="badge bc">Comfort</span>':'');
   const offHad=(o!==undefined&&o!=='');
   const sumtxt=[m.besp>0? fmt(m.besp)+'/jr besparing':'',fmt(offHad? parseFloat(o):m.bruto)+' bruto'].filter(Boolean).join(' · ');
   const whtml=m.m2? `<span id="w-${id}">+${fmt(m2v*(m.wpm2||0))}</span>`:(m.waarde>0? '+'+fmt(m.waarde):'—');
@@ -513,7 +513,7 @@ function resetAlles(){
   if(confirm('Alle offertes en keuzes wissen?')){
     const dark=st.dark;
     st={sel:{},off:{},m2s:{},notities:'',open:{},dark};
-    DATA.forEach(m=>{st.sel[m.id]=m.vp;});
+    DATA.forEach(m=>{st.sel[m.id]=m.vp||m.urgent||false;});
     sla();renderAlles();
   }
 }
