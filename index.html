@@ -219,12 +219,12 @@
     </div>
     <div class="card-meta">
       <div class="meta-item"><label>Oppervlak</label><span>60 m²</span></div>
-      <div class="meta-item"><label>DuurzaamXL</label><span class="warn">€ 18.513</span></div>
+      <div class="meta-item"><label>DuurzaamXL (buiten)</label><span class="warn">€ 18.513</span></div>
       <div class="meta-item"><label>Combikorting John?</label><span>⏳ afwachten</span></div>
       <div class="meta-item"><label>ISDE subsidie</label><span>€ 2.048</span></div>
     </div>
-    <div class="alert yellow" style="margin-top:10px;margin-bottom:0;font-size:0.75rem;">
-      ⚠️ DuurzaamXL = binnenisolatie. Dakpannenprobleem los van dit traject.
+    <div class="alert green" style="margin-top:10px;margin-bottom:0;font-size:0.75rem;">
+      ✅ Buitenisolatie inclusief nieuwe dakpannen — we doen <strong>niet</strong> de binnenisolatievariant. Lekkages worden hiermee ook opgelost.
     </div>
   </div>
 
@@ -471,11 +471,11 @@
   }
 
   const MAATREGELEN = {
-    spouw: 15, vloer: 8, wp: 25, dak: 20, dakkapel: 5, dakkapelv: 3, vent: 4
+    spouw: 18, vloer: 10, wp: 32, dak: 20, dakkapel: 5, dakkapelv: 3, vent: 4
   };
   const THRESHOLDS = [
-    { score: 0, label: 'D' }, { score: 15, label: 'C' },
-    { score: 35, label: 'B' }, { score: 60, label: 'A' }
+    { score: 0, label: 'D' }, { score: 18, label: 'C' },
+    { score: 40, label: 'B' }, { score: 60, label: 'A' }
   ];
 
   function updateLabel() {
