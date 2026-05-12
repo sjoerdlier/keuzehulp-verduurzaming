@@ -2,534 +2,558 @@
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<meta name="description" content="Keuzehulp verduurzaming Parallelweg 52 - van label F naar A">
-<title>Keuzehulp Verduurzaming · Parallelweg 52</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keuzehulp Verduurzaming — Parallelweg 52</title>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-  :root{
-    --g-dark:#1B4332;--g-mid:#2D6A4F;--g-light:#40916C;
-    --g-mint:#95D5B2;--g-pale:#f0f7f4;
-    --oranje:#c9430a;--geel:#ffb347;--blauw:#1a5276;--blauw-pale:#eaf4fb;
-    --bg:#f5f2ec;--kaart:#fff;--rand:#e0dbd0;
-    --tekst:#1a1a1a;--sub:#666;--sub2:#888;
-    --input-bg:#fffbf0;--offerte-bg:#f0f7f4;--offerte-rand:var(--g-light);
-    --risico-bg:#fff5f5;--info-bg:#eaf4fb;--sectie-bg:#f5f2ec;
-    --tab-bg:#fff;--tab-rand:#e0dbd0;
-    --radius:12px;--shadow:0 2px 8px rgba(64,145,108,.12);
-    --transition:background .25s,color .25s,border-color .25s;
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap');
+  :root {
+    --groen: #2d6a4f; --groen-licht: #52b788; --groen-pale: #d8f3dc;
+    --oranje: #e76f51; --geel: #f4a261; --blauw: #264653;
+    --bg: #f8f7f2; --card: #ffffff; --text: #1a1a1a;
+    --muted: #6b7280; --border: #e5e7eb; --red: #dc2626;
   }
-  html.dark{
-    --bg:#0f1a14;--kaart:#1a2820;--rand:#2a3d30;
-    --tekst:#e8f5ee;--sub:#9ab5a0;--sub2:#6a8f72;
-    --offerte-bg:#1a2f22;--offerte-rand:#40916C;
-    --risico-bg:#2a1a14;--info-bg:#14202a;--sectie-bg:#0f1a14;
-    --tab-bg:#1a2820;--tab-rand:#2a3d30;
-    --shadow:0 2px 8px rgba(0,0,0,.4);
+  html.dark {
+    --bg: #0f1a14; --card: #1a2820; --border: #2a3d30;
+    --text: #e8f5ee; --muted: #9ab5a0; --blauw: #1a3a2a;
+    --groen-pale: #1a2f22; --geel: #b07820;
   }
-  html{scroll-behavior:smooth}
-  body{font-family:Georgia,serif;background:var(--bg);color:var(--tekst);min-height:100vh;padding-bottom:60px;transition:var(--transition)}
-
-  header{background:var(--g-dark);color:#fff;padding:18px 16px 0;position:sticky;top:0;z-index:200;box-shadow:0 2px 16px rgba(0,0,0,.35)}
-  .h-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:10px}
-  .h-left{flex:1;min-width:0}
-  .h-eye{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--g-mint);margin-bottom:4px;font-family:sans-serif}
-  header h1{font-size:20px;font-weight:normal}
-  .h-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
-  .h-meta{font-size:10px;color:var(--g-mint);font-family:sans-serif;letter-spacing:1px;text-align:right;line-height:1.7}
-  .dm-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:5px 12px;font-size:13px;cursor:pointer;color:#fff;font-family:sans-serif;display:flex;align-items:center;gap:5px;transition:background .2s;white-space:nowrap;flex-shrink:0}
-  .dm-btn:active{background:rgba(255,255,255,.25)}
-  html.dark .dm-btn{background:rgba(149,213,178,.15);border-color:rgba(149,213,178,.3)}
-
-  /* ── LABEL METER ── */
-  .labelbar{background:rgba(0,0,0,.25);padding:10px 16px;border-top:1px solid rgba(255,255,255,.08)}
-  .labelbar-inner{display:flex;align-items:center;gap:8px}
-  .lb-titel{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5);font-family:sans-serif;white-space:nowrap;flex-shrink:0}
-  .label-stappen{display:flex;flex:1;gap:3px;align-items:center}
-  .ls{flex:1;height:22px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:bold;font-family:sans-serif;color:rgba(255,255,255,.3);background:rgba(255,255,255,.07);transition:all .35s;border:1px solid rgba(255,255,255,.08)}
-  .ls.bereikt{color:#fff;opacity:.7}
-  .ls.huidig{color:#fff!important;opacity:1;transform:scaleY(1.18);box-shadow:0 0 10px rgba(149,213,178,.5);border-color:rgba(255,255,255,.5);z-index:1;position:relative}
-  .ls.lF{background:#c0392b}.ls.lF.bereikt,.ls.lF.huidig{background:#c0392b}
-  .ls.lE{background:#e67e22}.ls.lE.bereikt,.ls.lE.huidig{background:#e67e22}
-  .ls.lD{background:#f39c12}.ls.lD.bereikt,.ls.lD.huidig{background:#f39c12}
-  .ls.lC{background:#f1c40f}.ls.lC.bereikt,.ls.lC.huidig{background:#f1c40f;color:#333!important}
-  .ls.lB{background:#2ecc71}.ls.lB.bereikt,.ls.lB.huidig{background:#2ecc71}
-  .ls.lA{background:#27ae60}.ls.lA.bereikt,.ls.lA.huidig{background:#27ae60}
-  .lb-tekst{font-size:11px;color:rgba(255,255,255,.75);font-family:sans-serif;white-space:nowrap;flex-shrink:0;text-align:right;min-width:55px}
-
-  .tbar{background:var(--g-mid);display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.1)}
-  .ti{text-align:center;padding:10px 4px;border-right:1px solid rgba(255,255,255,.1)}
-  .ti:last-child{border-right:none}
-  .ti-l{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--g-mint);font-family:sans-serif;margin-bottom:3px}
-  .ti-v{font-size:15px;font-weight:bold;color:#fff}
-  .pos{color:var(--g-mint)!important}
-  .neg{color:var(--geel)!important}
-
-  .tabs{display:flex;background:var(--tab-bg);border-bottom:2px solid var(--tab-rand);position:sticky;top:152px;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;transition:var(--transition)}
-  .tabs::-webkit-scrollbar{display:none}
-  .tab{flex:1;min-width:75px;padding:12px 6px;text-align:center;font-size:11px;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;color:var(--sub2);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:all .2s;user-select:none}
-  .tab.on{color:var(--g-light);border-bottom-color:var(--g-light);font-weight:bold}
-
-  .panel{display:none}
-  .panel.on{display:block}
-
-  .sectie{padding:16px;background:var(--sectie-bg);transition:var(--transition)}
-  .s-titel{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--g-light);margin-bottom:12px;display:flex;align-items:center;gap:8px;font-family:sans-serif}
-  .s-titel::after{content:'';flex:1;height:1px;background:var(--rand)}
-
-  .kaart{background:var(--kaart);border-radius:var(--radius);margin-bottom:10px;border:1.5px solid var(--rand);overflow:hidden;transition:border-color .2s,box-shadow .2s,opacity .2s,background .25s}
-  .kaart.aan{border-color:var(--g-light);box-shadow:var(--shadow)}
-  .kaart.vp{border-color:var(--g-dark)}
-  html.dark .kaart.vp{border-color:var(--g-light)}
-  .kaart.uit{opacity:.45}
-  .kaart.wstijl{border-style:dashed}
-  .k-h{display:flex;align-items:center;padding:14px 14px 12px;gap:12px;cursor:pointer;user-select:none;-webkit-user-select:none}
-  .check{width:24px;height:24px;border-radius:7px;border:2px solid var(--rand);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;color:#fff;transition:all .2s}
-  .kaart.aan .check{background:var(--g-light);border-color:var(--g-light)}
-  .kaart.vp .check{background:var(--g-dark);border-color:var(--g-dark)}
-  html.dark .kaart.vp .check{background:var(--g-light);border-color:var(--g-light)}
-  .kaart.uit .check{background:transparent;color:transparent}
-  .k-info{flex:1;min-width:0}
-  .badges{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:4px}
-  .badge{font-size:9px;letter-spacing:1px;text-transform:uppercase;border-radius:4px;padding:2px 7px;font-family:sans-serif;font-weight:bold}
-  .bv{background:var(--g-dark);color:#fff}
-  html.dark .bv{background:var(--g-light)}
-  .bw{background:#e8e0d0;color:#666}
-  html.dark .bw{background:#3a3020;color:#b0a080}
-  .bc{background:#d4e8f7;color:var(--blauw)}
-  html.dark .bc{background:#1a2a3a;color:#7ab8e0}
-  .k-naam{font-size:15px;font-weight:bold;line-height:1.3;color:var(--tekst)}
-  .k-sum{font-size:12px;color:var(--sub);margin-top:2px}
-  .chev{font-size:12px;color:var(--sub2);transition:transform .3s;flex-shrink:0}
-  .kaart.open .chev{transform:rotate(180deg)}
-  .k-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
-  .kaart.open .k-body{max-height:900px}
-  .k-body-in{padding:14px 14px 16px 50px;border-top:1px solid var(--rand)}
-  .ktip{font-size:13px;color:var(--sub);margin-bottom:10px;line-height:1.6}
-  .krisico{font-size:12px;color:var(--oranje);margin-bottom:10px;padding:8px 10px;background:var(--risico-bg);border-radius:6px;border-left:3px solid var(--oranje)}
-  .kinfo{font-size:12px;color:#2980b9;margin-bottom:10px;padding:8px 10px;background:var(--info-bg);border-radius:6px;border-left:3px solid #2980b9}
-  html.dark .kinfo{color:#7ab8e0}
-  .m2r{display:flex;align-items:center;gap:8px;margin-bottom:12px;background:var(--offerte-bg);border-radius:8px;padding:10px 12px}
-  .m2l{font-size:13px;color:var(--g-light);flex:1}
-  .m2i{width:66px;border:1.5px solid var(--g-light);border-radius:6px;padding:6px 10px;font-size:14px;font-family:Georgia,serif;text-align:center;background:var(--kaart);color:var(--tekst)}
-  .m2i:focus{outline:none;border-color:var(--g-dark)}
-  .offerte-sectie{background:var(--offerte-bg);border-radius:10px;padding:12px;margin-bottom:10px;border:1.5px solid var(--offerte-rand)}
-  .offerte-titel{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--g-light);font-family:sans-serif;margin-bottom:8px;display:flex;align-items:center;gap:6px}
-  .offerte-had{font-size:10px;background:#fffbf0;border:1px solid #e0c870;color:#8a6c00;border-radius:4px;padding:2px 6px;font-family:sans-serif}
-  html.dark .offerte-had{background:#2a2510;border-color:#8a6c00;color:#c8a830}
-  .bruto-i{width:100%;border:1.5px solid var(--g-light);border-radius:8px;padding:10px 14px;font-size:16px;font-family:Georgia,serif;background:var(--kaart);color:var(--tekst);text-align:right;-webkit-appearance:none}
-  .bruto-i:focus{outline:none;border-color:var(--g-dark);box-shadow:0 0 0 3px rgba(64,145,108,.2)}
-  .bruto-hint{font-size:11px;color:var(--sub2);font-family:sans-serif;margin-top:5px;text-align:right}
-  .cijfers{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
-  .cijfer{background:var(--sectie-bg);border-radius:8px;padding:10px 8px;text-align:center}
-  .c-l{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--sub2);font-family:sans-serif;margin-bottom:5px}
-  .c-v{font-size:14px;font-weight:bold}
-  .groen{color:var(--g-light)}
-  .dgroen{color:var(--g-mint)}
-  .extra-r{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
-  .extra-i{font-size:12px;color:var(--sub);font-family:sans-serif}
-
-  .tot-p{padding:16px}
-  .tags-blok{background:var(--kaart);border-radius:var(--radius);padding:16px;margin-bottom:16px;border:1px solid var(--rand);transition:var(--transition)}
-  .tags-t{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--g-light);font-family:sans-serif;margin-bottom:10px}
-  .tags{display:flex;flex-wrap:wrap;gap:6px}
-  .tag{background:var(--offerte-bg);border:1px solid var(--g-light);border-radius:20px;padding:5px 12px;font-size:12px;color:var(--g-mint);font-family:sans-serif}
-  .tag.w{background:var(--sectie-bg);border-color:#c8b89a;color:#c8b89a}
-  .tag.c{background:var(--info-bg);border-color:#2980b9;color:#7ab8e0}
-  .hero{background:var(--g-dark);border-radius:16px;padding:24px 18px;color:#fff;margin-bottom:16px}
-  .hero h2{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--g-mint);margin-bottom:20px;font-weight:normal;font-family:sans-serif}
-  .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-  .hb{background:rgba(255,255,255,.08);border-radius:10px;padding:14px 12px}
-  .hb.wide{grid-column:span 2;background:rgba(255,255,255,.17);border:1px solid rgba(255,255,255,.25)}
-  .hb-l{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--g-mint);font-family:sans-serif;margin-bottom:6px}
-  .hb-v{font-size:22px;font-weight:bold}
-  .hb-s{font-size:11px;color:#74C69D;margin-top:2px;font-family:sans-serif}
-  .hr{border:none;border-top:1px solid rgba(255,255,255,.15);margin:16px 0}
-  .cf-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .cf-l{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--g-mint);font-family:sans-serif;margin-bottom:4px}
-  .cf-v{font-size:19px;font-weight:bold}
-  .not-blok{background:var(--kaart);border-radius:var(--radius);padding:16px;margin-bottom:16px;border:1px solid var(--rand);transition:var(--transition)}
-  .not-blok h3{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--g-light);font-family:sans-serif;margin-bottom:10px}
-  .not-i{width:100%;border:1.5px solid var(--rand);border-radius:8px;padding:10px 12px;font-size:13px;font-family:Georgia,serif;background:var(--sectie-bg);color:var(--tekst);resize:vertical;min-height:80px;transition:var(--transition)}
-  .not-i:focus{outline:none;border-color:var(--g-light)}
-  .leg{background:var(--kaart);border-radius:var(--radius);padding:16px;margin-bottom:16px;border:1px solid var(--rand);font-size:11px;color:var(--sub);font-family:sans-serif;line-height:1.9;transition:var(--transition)}
-  .leg strong{color:var(--tekst)}
-  .reset-btn{display:block;width:100%;background:transparent;border:1.5px solid var(--rand);border-radius:8px;padding:12px;font-size:12px;color:var(--sub);cursor:pointer;font-family:sans-serif;text-align:center;transition:all .2s}
-  .reset-btn:active{border-color:var(--oranje);color:var(--oranje)}
-
-  .plan-p{padding:16px}
-  .agenda{background:var(--kaart);border-radius:var(--radius);padding:16px;margin-bottom:16px;border:1px solid var(--rand);transition:var(--transition)}
-  .agenda h3{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--g-light);font-family:sans-serif;margin-bottom:12px}
-  .ag-i{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--rand)}
-  .ag-i:last-child{border-bottom:none}
-  .ag-d{color:#fff;border-radius:8px;padding:6px 10px;font-family:sans-serif;font-weight:bold;text-align:center;min-width:52px;flex-shrink:0}
-  .ag-dag{font-size:18px;line-height:1}
-  .ag-mnd{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--g-mint)}
-  .ag-t .a-t{font-size:14px;font-weight:bold;color:var(--tekst)}
-  .ag-t .a-s{font-size:12px;color:var(--sub);margin-top:2px;font-family:sans-serif}
-  .acties{font-size:14px;line-height:2.3;color:var(--tekst)}
-
-  @media(min-width:600px){
-    .hero-grid{grid-template-columns:repeat(3,1fr)}
-    .hb.wide{grid-column:span 3}
-    .cf-grid{grid-template-columns:repeat(4,1fr)}
-    .cijfers{grid-template-columns:repeat(4,1fr)}
-  }
+  html.dark header { background: #0a1410; }
+  html.dark .label-bar { background: #0a1410; }
+  html.dark .label-legend { background: #0a1410; }
+  html.dark .tabs { background: #1a2820; border-color: #2a3d30; }
+  html.dark .tab { color: #9ab5a0; }
+  html.dark .tab.active { color: var(--groen-licht); border-color: var(--groen-licht); }
+  html.dark .alert.blue { background: #14202a; border-color: #1d4ed8; color: #93c5fd; }
+  html.dark .alert.yellow { background: #2a1a08; border-color: #92400e; color: #fcd34d; }
+  html.dark .alert.green { background: #1a2f22; border-color: #2d6a4f; color: #86efac; }
+  html.dark .fase-header { background: #1a3a2a !important; }
+  html.dark .badge-green { background: #1a2f22; color: #86efac; }
+  html.dark .badge-orange { background: #2a1a08; color: #fcd34d; }
+  html.dark .badge-red { background: #2a0f0f; color: #fca5a5; }
+  html.dark .badge-grey { background: #2a3d30; color: #9ab5a0; }
+  html.dark .badge-purple { background: #1e1a2e; color: #c4b5fd; }
+  html.dark .offerte-input { background: #1a2820; border-color: #2a3d30; color: #e8f5ee; }
+  html.dark .dm-btn { background: rgba(149,213,178,.15); border-color: rgba(149,213,178,.3); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; transition: background 0.2s, color 0.2s; }
+  header { background: var(--blauw); color: white; padding: 20px 20px 16px; }
+  header h1 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; font-weight: 400; line-height: 1.2; }
+  header p { font-size: 0.8rem; opacity: 0.7; margin-top: 4px; }
+  .label-bar { background: var(--blauw); padding: 0 20px 12px; display: flex; align-items: center; gap: 6px; }
+  .label-item { flex: 1; text-align: center; padding: 5px 2px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; color: white; opacity: 0.4; transition: all 0.2s; }
+  .label-item.start { opacity: 0.75; outline: 2px dashed rgba(255,255,255,0.6); outline-offset: 2px; }
+  .label-item.active { opacity: 1; transform: scale(1.08); box-shadow: 0 0 0 2px white; }
+  .label-D { background: #d97706; } .label-C { background: #ca8a04; }
+  .label-B { background: #65a30d; } .label-A { background: #16a34a; }
+  .label-legend { background: var(--blauw); padding: 0 20px 12px; display: flex; gap: 14px; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.68rem; color: rgba(255,255,255,0.7); }
+  .legend-swatch { width: 10px; height: 10px; border-radius: 2px; }
+  .tabs { display: flex; background: white; border-bottom: 1px solid var(--border); overflow-x: auto; }
+  .tab { flex: 1; min-width: 80px; padding: 12px 8px; text-align: center; font-size: 0.72rem; font-weight: 500; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.15s; }
+  .tab.active { color: var(--groen); border-bottom-color: var(--groen); }
+  .content { padding: 16px; max-width: 600px; margin: 0 auto; }
+  .section-title { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--blauw); margin-bottom: 12px; }
+  .card { background: var(--card); border-radius: 10px; padding: 14px; margin-bottom: 10px; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+  .card-title { font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .card-title input[type=checkbox] { width: 18px; height: 18px; cursor: pointer; accent-color: var(--groen); }
+  .badge { font-size: 0.68rem; padding: 2px 7px; border-radius: 20px; font-weight: 500; white-space: nowrap; }
+  .badge-green { background: var(--groen-pale); color: var(--groen); }
+  .badge-orange { background: #fef3c7; color: #92400e; }
+  .badge-red { background: #fee2e2; color: var(--red); }
+  .badge-grey { background: #f3f4f6; color: var(--muted); }
+  .badge-purple { background: #ede9fe; color: #6d28d9; }
+  .phase-pill { display: inline-block; font-size: 0.63rem; padding: 1px 6px; border-radius: 10px; font-weight: 600; }
+  .phase-1 { background: #dbeafe; color: #1d4ed8; }
+  .phase-2 { background: #ede9fe; color: #6d28d9; }
+  .card-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 10px; }
+  .meta-item label { font-size: 0.67rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; display: block; margin-bottom: 2px; }
+  .meta-item span { font-size: 0.85rem; font-weight: 500; }
+  .ok { color: var(--groen); } .warn { color: var(--oranje); } .bad { color: var(--red); }
+  .offerte-input { width: 100%; border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; font-size: 0.82rem; font-family: 'DM Sans', sans-serif; background: var(--bg); margin-top: 4px; }
+  .offerte-input:focus { outline: none; border-color: var(--groen-licht); background: white; }
+  .alert { border-radius: 8px; padding: 10px 12px; font-size: 0.8rem; margin-bottom: 10px; line-height: 1.5; border: 1px solid; }
+  .alert.yellow { background: #fef3c7; border-color: #fcd34d; }
+  .alert.green { background: var(--groen-pale); border-color: #86efac; }
+  .alert.blue { background: #dbeafe; border-color: #93c5fd; }
+  .fase-header { color: white; border-radius: 8px; padding: 10px 14px; margin-bottom: 10px; font-size: 0.82rem; font-weight: 600; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
+  .fase-header .fase-badge { background: rgba(255,255,255,0.2); border-radius: 4px; padding: 2px 8px; font-size: 0.7rem; font-weight: 400; }
+  .totaal-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; gap: 8px; }
+  .totaal-row:last-child { border-bottom: none; }
+  .totaal-row .rlabel { color: var(--muted); font-size: 0.8rem; }
+  .bedrag { font-weight: 600; white-space: nowrap; }
+  .positief { color: var(--groen); } .negatief { color: var(--red); }
+  .big-number { text-align: center; padding: 20px; }
+  .big-number .amount { font-family: 'DM Serif Display', serif; font-size: 2.5rem; color: var(--groen); display: block; }
+  .big-number .sub { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
+  .scenario-switch { display: flex; gap: 6px; margin-bottom: 14px; }
+  .scenario-btn { flex: 1; padding: 8px 4px; border-radius: 8px; border: 1.5px solid var(--border); background: white; font-size: 0.72rem; font-weight: 500; cursor: pointer; text-align: center; transition: all 0.15s; font-family: 'DM Sans', sans-serif; }
+  .scenario-btn.active { border-color: var(--groen); background: var(--groen-pale); color: var(--groen); }
+  .timeline { position: relative; padding-left: 24px; }
+  .timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: var(--border); }
+  .tl-item { position: relative; padding: 0 0 16px 16px; }
+  .tl-dot { position: absolute; left: -17px; top: 4px; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--border); background: white; }
+  .tl-dot.done { background: var(--groen); border-color: var(--groen); }
+  .tl-dot.next { background: var(--geel); border-color: var(--geel); }
+  .tl-dot.urgent { background: var(--oranje); border-color: var(--oranje); }
+  .tl-date { font-size: 0.72rem; color: var(--muted); }
+  .tl-title { font-weight: 600; font-size: 0.88rem; margin: 2px 0; }
+  .tl-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.4; }
+  .woning-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+  .woning-stat { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px; text-align: center; }
+  .woning-stat .val { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--blauw); display: block; }
+  .woning-stat .lbl { font-size: 0.7rem; color: var(--muted); margin-top: 2px; }
+  .hidden { display: none; }
+  .disclaimer { font-size: 0.72rem; color: var(--muted); text-align: center; padding: 16px 0 8px; line-height: 1.5; }
+  .dm-btn { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2); border-radius: 20px; padding: 5px 12px; font-size: 0.75rem; cursor: pointer; color: #fff; font-family: 'DM Sans', sans-serif; display: inline-flex; align-items: center; gap: 5px; transition: background .2s; white-space: nowrap; margin-top: 8px; }
+  .dm-btn:active { background: rgba(255,255,255,.25); }
+  .strikethrough { text-decoration: line-through; color: var(--muted); font-size: 0.78rem; }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="h-top">
-    <div class="h-left">
-      <div class="h-eye">Parallelweg 52 · Koog aan de Zaan</div>
-      <h1>Keuzehulp Verduurzaming</h1>
-    </div>
-    <div class="h-right">
-      <button class="dm-btn" onclick="toggleDark()" id="dm-btn">🌙 Dark</button>
-      <div class="h-meta">Label F → A<br>2-onder-1-kap · ~1935</div>
-    </div>
-  </div>
-  <div class="tbar">
-    <div class="ti"><div class="ti-l">Bruto</div><div class="ti-v" id="bar-bruto">—</div></div>
-    <div class="ti"><div class="ti-l">Netto</div><div class="ti-v" id="bar-netto">—</div></div>
-    <div class="ti"><div class="ti-l">Cashflow/mnd</div><div class="ti-v" id="bar-cf">—</div></div>
-  </div>
-  <div class="labelbar">
-    <div class="labelbar-inner">
-      <span class="lb-titel">Label</span>
-      <div class="label-stappen" id="label-stappen">
-        <div class="ls lF" id="ls-F">F</div>
-        <div class="ls lE" id="ls-E">E</div>
-        <div class="ls lD" id="ls-D">D</div>
-        <div class="ls lC" id="ls-C">C</div>
-        <div class="ls lB" id="ls-B">B</div>
-        <div class="ls lA" id="ls-A">A</div>
-      </div>
-      <span class="lb-tekst" id="lb-tekst">Label F</span>
-    </div>
-  </div>
+  <h1>Verduurzaming<br>Parallelweg 52</h1>
+  <p>Koog aan de Zaan · Label D → A · bijgewerkt 12 mei 2026</p>
+  <button class="dm-btn" onclick="toggleDark()" id="dm-btn">🌙 Dark</button>
 </header>
 
-<div class="tabs">
-  <div class="tab on" onclick="toonTab('verd',this)">🌿 Verduurzaming</div>
-  <div class="tab" onclick="toonTab('woning',this)">🏠 Woning</div>
-  <div class="tab" onclick="toonTab('totaal',this)">📊 Totaal</div>
-  <div class="tab" onclick="toonTab('plan',this)">📅 Planning</div>
+<div class="label-bar">
+  <div class="label-item label-D start" id="lbl-D">D</div>
+  <div class="label-item label-C" id="lbl-C">C</div>
+  <div class="label-item label-B" id="lbl-B">B</div>
+  <div class="label-item label-A" id="lbl-A">A</div>
 </div>
-
-<div class="panel on" id="panel-verd">
-  <div class="sectie"><div class="s-titel">Isolatie</div><div id="cat-isolatie"></div></div>
-  <div class="sectie"><div class="s-titel">Dak</div><div id="cat-dak"></div></div>
-  <div class="sectie"><div class="s-titel">Installatie</div><div id="cat-installatie"></div></div>
-</div>
-
-<div class="panel" id="panel-woning">
-  <div class="sectie"><div class="s-titel">Uitbreiding</div><div id="cat-uitbreiding"></div></div>
-  <div class="sectie"><div class="s-titel">Comfort &amp; leefbaarheid</div><div id="cat-comfort"></div></div>
-</div>
-
-<div class="panel" id="panel-totaal">
-  <div class="tot-p">
-    <div class="tags-blok">
-      <div class="tags-t" id="tags-teller">Geselecteerd (0)</div>
-      <div class="tags" id="tags-cont"></div>
-    </div>
-    <div class="hero">
-      <h2>Financieel overzicht</h2>
-      <div class="hero-grid">
-        <div class="hb"><div class="hb-l">Bruto investering</div><div class="hb-v" id="t-bruto">—</div></div>
-        <div class="hb"><div class="hb-l">ISDE subsidie</div><div class="hb-v pos" id="t-isde">—</div><div class="hb-s">Landelijk · RVO</div></div>
-        <div class="hb"><div class="hb-l">Gemeente Zaanstad</div><div class="hb-v pos" id="t-gem">—</div><div class="hb-s">VHF + LAI · bevestigen 7 mei</div></div>
-        <div class="hb wide"><div class="hb-l">✅ Netto investering</div><div class="hb-v" id="t-netto">—</div><div class="hb-s">Na alle subsidies</div></div>
-      </div>
-      <div class="hr"></div>
-      <div class="cf-grid">
-        <div><div class="cf-l">💰 Besparing/jr</div><div class="cf-v" id="t-besp">—</div></div>
-        <div><div class="cf-l">🏠 Waardestijging</div><div class="cf-v" id="t-waarde">—</div></div>
-        <div><div class="cf-l">🏦 Hypotheek +/mnd</div><div class="cf-v" id="t-hyp">—</div></div>
-        <div><div class="cf-l">📊 Cashflow/mnd</div><div class="cf-v" id="t-cf">—</div></div>
-      </div>
-    </div>
-    <div class="not-blok">
-      <h3>📝 Notities Sjoerd &amp; Carli</h3>
-      <textarea class="not-i" id="notities" placeholder="Aandachtspunten, vragen voor adviseurs, afspraken na offertes…" oninput="slaNotities()"></textarea>
-    </div>
-    <div class="leg">
-      <strong>Offerte invullen</strong> — tik op een maatregel en vul het offertebedrag in. De rest herberekent automatisch.<br>
-      <strong>Subsidie Zaanstad</strong> (VHF €7.500 + LAI €1.500) geldt alleen voor verduurzaming — bevestigen 7 mei.<br>
-      <strong>Hypotheek</strong>: €50 extra per maand per €10.000 geleend.<br>
-      <strong>Cashflow</strong> = energiebesparing/mnd minus hypotheek extra/mnd.
-    </div>
-    <button class="reset-btn" onclick="resetAlles()">↺ Reset naar standaard schattingen</button>
+<div class="label-legend">
+  <div class="legend-item">
+    <div class="legend-swatch" style="background:rgba(255,255,255,0.4);outline:1px dashed rgba(255,255,255,0.6);"></div>
+    Huidig (D)
+  </div>
+  <div class="legend-item">
+    <div class="legend-swatch" style="background:white;"></div>
+    Doel na maatregelen
   </div>
 </div>
 
-<div class="panel" id="panel-plan">
-  <div class="plan-p">
+<div class="tabs">
+  <div class="tab active" onclick="showTab('verduurzaming', this)">🏠 Maatregelen</div>
+  <div class="tab" onclick="showTab('totaal', this)">💶 Totaal</div>
+  <div class="tab" onclick="showTab('woning', this)">📋 Woning</div>
+  <div class="tab" onclick="showTab('planning', this)">📅 Planning</div>
+</div>
 
-    <div class="agenda">
-      <h3>Komende afspraken</h3>
+<!-- TAB: MAATREGELEN -->
+<div id="tab-verduurzaming" class="content">
 
-      <div class="ag-i">
-        <div class="ag-d" style="background:var(--g-light)"><div class="ag-mnd">Apr</div><div class="ag-dag">15</div></div>
-        <div class="ag-t">
-          <div class="a-t">Ruiten Isolatie — inspectie</div>
-          <div class="a-s">15:00 · Parallelweg 52 · Via Klimaatstarters · Spouw, vloer, dak beoordeling</div>
-        </div>
+  <div class="alert blue">
+    <strong>📋 Rapport Klimaatstarters — 11 mei 2026</strong><br>
+    Huidig label D (balansventilatie meegenomen). Keuzevrijheid aannemer ✅ bevestigd.
+  </div>
+
+  <div class="fase-header" style="background: var(--blauw);">
+    Fase 1 — Nu uitvoeren <span class="fase-badge">⚠️ VHF deadline 1 okt 2026</span>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        <input type="checkbox" id="chk-spouw" onchange="updateLabel()">
+        🧱 Spouwmuurisolatie <span class="phase-pill phase-1">Fase 1</span>
       </div>
-
-      <div class="ag-i">
-        <div class="ag-d" style="background:var(--g-dark)"><div class="ag-mnd">Apr</div><div class="ag-dag">22</div></div>
-        <div class="ag-t">
-          <div class="a-t">DuurzaamXL</div>
-          <div class="a-s">Via de Hypotheker · Offerte + benchmark</div>
-        </div>
-      </div>
-
-      <div class="ag-i">
-        <div class="ag-d" style="background:var(--g-dark)"><div class="ag-mnd">Mei</div><div class="ag-dag">7</div></div>
-        <div class="ag-t">
-          <div class="a-t">Klimaatstarters</div>
-          <div class="a-s">VHF-subsidie bevestigen · Traject starten</div>
-        </div>
-      </div>
-
-      <div class="ag-i">
-        <div class="ag-d" style="background:#888"><div class="ag-mnd">Mei</div><div class="ag-dag">?</div></div>
-        <div class="ag-t">
-          <div class="a-t">WoonWijzerWinkel</div>
-          <div class="a-s">Marktplein 5, Wormerveer · 075-2019007</div>
-        </div>
-      </div>
-
+      <span class="badge badge-green">MARKTCONFORM</span>
     </div>
-
-    <div class="agenda">
-      <h3>Subsidie deadlines</h3>
-      <div class="ag-i">
-        <div class="ag-d" style="background:var(--oranje)"><div class="ag-mnd">Okt</div><div class="ag-dag">1</div></div>
-        <div class="ag-t"><div class="a-t">VHF Zaanstad — aanmelding</div><div class="a-s">Uiterste datum Klimaatstarters · €7.500 op spel</div></div>
-      </div>
-      <div class="ag-i">
-        <div class="ag-d" style="background:var(--oranje)"><div class="ag-mnd">Dec</div><div class="ag-dag">31</div></div>
-        <div class="ag-t"><div class="a-t">LAI Zaanstad</div><div class="a-s">Uitvoering + betaald voor 31 dec 2026 · €1.500</div></div>
-      </div>
-      <div class="ag-i">
-        <div class="ag-d" style="background:var(--g-mid)"><div class="ag-mnd">2030</div><div class="ag-dag" style="font-size:13px">Dec</div></div>
-        <div class="ag-t"><div class="a-t">ISDE — doorlopend</div><div class="a-s">Aanvragen na uitvoering · tot 31 dec 2030</div></div>
-      </div>
+    <div class="card-meta">
+      <div class="meta-item"><label>Oppervlak</label><span>91 m²</span></div>
+      <div class="meta-item"><label>DuurzaamXL</label><span class="ok">€ 3.200</span></div>
+      <div class="meta-item"><label>Klimaatstarters ind.</label><span class="bad">€ 4.090</span></div>
+      <div class="meta-item"><label>ISDE subsidie</label><span>€ 956</span></div>
     </div>
+  </div>
 
-    <div class="agenda">
-      <h3>Actielijst</h3>
-      <div class="acties">
-        <div>✅ Label F bevestigd via EP-Online</div>
-        <div>✅ WOZ-waarde onder €477.000</div>
-        <div>✅ Aangemeld bij Klimaatstarters</div>
-        <div>✅ Afspraak Ruiten Isolatie 15 april</div>
-        <div>✅ Afspraak DuurzaamXL 22 april</div>
-        <div>✅ Afspraak Klimaatstarters 7 mei</div>
-        <div>⏳ WoonWijzerWinkel afspraak</div>
-        <div>⏳ Offertes ophalen en invullen in deze tool</div>
-        <div>⏳ Gedeeld dak bespreken met John</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        <input type="checkbox" id="chk-vloer" onchange="updateLabel()">
+        🪵 Bodemisolatie <span class="phase-pill phase-1">Fase 1</span>
       </div>
+      <span class="badge badge-green">MARKTCONFORM</span>
     </div>
+    <div class="card-meta">
+      <div class="meta-item"><label>Oppervlak</label><span>45 m²</span></div>
+      <div class="meta-item"><label>DuurzaamXL</label><span class="ok">€ 2.244</span></div>
+      <div class="meta-item"><label>Klimaatstarters ind.</label><span class="bad">€ 2.699</span></div>
+      <div class="meta-item"><label>ISDE subsidie</label><span>€ 270</span></div>
+    </div>
+  </div>
 
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        <input type="checkbox" id="chk-wp" onchange="updateLabel()">
+        🌡️ Hybride warmtepomp <span class="phase-pill phase-1">Fase 1</span>
+      </div>
+      <span class="badge badge-green">BESTE KEUZE</span>
+    </div>
+    <div class="card-meta">
+      <div class="meta-item"><label>Type</label><span>Weheat Flint 6kW</span></div>
+      <div class="meta-item"><label>Warmland offerte</label><span class="ok">€ 5.221</span></div>
+      <div class="meta-item"><label>Klimaatstarters ind.</label><span class="bad">€ 8.265</span></div>
+      <div class="meta-item"><label>ISDE subsidie</label><span>€ 2.350*</span></div>
+    </div>
+    <div class="alert green" style="margin-top:10px;margin-bottom:0;font-size:0.75rem;">
+      ✅ Akkoord gegeven onder voorbehoud 3 punten: ISDE corrigeren naar €2.575, service deal voorwaarden, kraankoppeling dakkapel
+    </div>
+  </div>
+
+  <div class="fase-header" style="background: #5b21b6; margin-top:16px;">
+    Fase 2 — Later, in overleg <span class="fase-badge">afhankelijk van John + dak</span>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        <input type="checkbox" id="chk-dak" onchange="updateLabel()">
+        🏠 Dakrenovatie + isolatie <span class="phase-pill phase-2">Fase 2</span>
+      </div>
+      <span class="badge badge-orange">PRIJZIG</span>
+    </div>
+    <div class="card-meta">
+      <div class="meta-item"><label>Oppervlak</label><span>60 m²</span></div>
+      <div class="meta-item"><label>DuurzaamXL</label><span class="warn">€ 18.513</span></div>
+      <div class="meta-item"><label>Combikorting John?</label><span>⏳ afwachten</span></div>
+      <div class="meta-item"><label>ISDE subsidie</label><span>€ 2.048</span></div>
+    </div>
+    <div class="alert yellow" style="margin-top:10px;margin-bottom:0;font-size:0.75rem;">
+      ⚠️ DuurzaamXL = binnenisolatie. Dakpannenprobleem los van dit traject.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        <input type="checkbox" id="chk-dakkapel" onchange="updateLabel()">
+        🏗️ Dakkapel achterzijde <span class="phase-pill phase-2">Fase 2</span>
+      </div>
+      <span class="badge badge-purple">PRIORITEIT</span>
+    </div>
+    <div class="card-meta">
+      <div class="meta-item"><label>DuurzaamXL (3m)</label><span class="warn">€ 12.196</span></div>
+      <div class="meta-item"><label>Ruiter 2023 (5m!)</label><span class="ok">€ 11.190</span></div>
+      <div class="meta-item"><label>WP komt hierop</label><span>afstemmen Warmland</span></div>
+      <div class="meta-item"><label>ISDE subsidie</label><span>€ 0</span></div>
+    </div>
+    <div style="margin-top:10px;">
+      <label style="font-size:0.75rem;color:var(--muted);">Ruiter nieuwe offerte 2026</label>
+      <input class="offerte-input" type="text" id="offerte-dakkapel" placeholder="nog opvragen" oninput="saveInputs()">
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        <input type="checkbox" id="chk-dakkapelv" onchange="updateLabel()">
+        🏗️ Dakkapel voorzijde <span class="phase-pill phase-2">Fase 2</span>
+      </div>
+      <span class="badge badge-grey">OPTIONEEL</span>
+    </div>
+    <div class="card-meta">
+      <div class="meta-item"><label>DuurzaamXL</label><span class="warn">€ 10.164</span></div>
+      <div class="meta-item"><label>Ruiter 2023</label><span class="ok">€ 6.835</span></div>
+      <div class="meta-item"><label>Dakkapellen.nu 2023</label><span>€ 7.268</span></div>
+      <div class="meta-item"><label>ISDE subsidie</label><span>€ 0</span></div>
+    </div>
+  </div>
+
+  <div class="disclaimer">Vink aan wat je uitvoert — het label past zich aan.<br>Prijzen o.b.v. ontvangen offertes, mei 2026.</div>
+</div>
+
+<!-- TAB: TOTAAL -->
+<div id="tab-totaal" class="content hidden">
+  <div class="scenario-switch">
+    <div class="scenario-btn active" onclick="setScenario('klimaat')" id="btn-klimaat">Klimaatstarters</div>
+    <div class="scenario-btn" onclick="setScenario('fase1')" id="btn-fase1">Fase 1 reëel</div>
+    <div class="scenario-btn" onclick="setScenario('alles')" id="btn-alles">Fase 1+2</div>
+  </div>
+
+  <div class="card">
+    <div class="big-number">
+      <span class="amount" id="netto-investering">€ 15.634</span>
+      <div class="sub" id="netto-sub">eigen bijdrage · Klimaatstarters-scenario (Ruiten-prijzen)</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <p style="font-size:0.75rem;color:var(--muted);margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;">Investering & subsidie</p>
+    <div class="totaal-row"><span class="rlabel">Bruto investering</span><span class="bedrag" id="t-bruto">€ 30.682</span></div>
+    <div class="totaal-row"><span class="rlabel">VHF (Zaandam Oost)</span><span class="bedrag positief">− € 7.500</span></div>
+    <div class="totaal-row"><span class="rlabel">NIP (Zaanstad)</span><span class="bedrag positief">− € 1.500</span></div>
+    <div class="totaal-row"><span class="rlabel" id="t-isde-label">ISDE isolatie + warmtepomp</span><span class="bedrag positief" id="t-isde">− € 6.048</span></div>
+    <div class="totaal-row" style="border-top:2px solid var(--border);padding-top:10px;margin-top:4px;">
+      <span style="font-weight:600;">Totaal subsidie</span>
+      <span class="bedrag positief" id="t-subsidie">− € 15.048</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <p style="font-size:0.75rem;color:var(--muted);margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;">Besparing per jaar</p>
+    <div class="totaal-row"><span class="rlabel">Gasbesparing 1.200 m³ × €1,24</span><span class="bedrag positief">+ € 1.488</span></div>
+    <div class="totaal-row"><span class="rlabel">Extra stroom WP 2.200 kWh × €0,30</span><span class="bedrag negatief">− € 660</span></div>
+    <div class="totaal-row" style="border-top:2px solid var(--border);padding-top:10px;margin-top:4px;">
+      <span style="font-weight:600;">Netto besparing</span>
+      <span class="bedrag positief">+ € 828 – 1.020 / jaar</span>
+    </div>
+    <div style="font-size:0.72rem;color:var(--muted);margin-top:8px;">Klimaatstarters rapport: €1.020/jaar besparing.</div>
+  </div>
+
+  <div class="card">
+    <p style="font-size:0.75rem;color:var(--muted);margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;">Waardestijging woning (gecorrigeerd)</p>
+    <div class="totaal-row">
+      <span class="rlabel">Label D → A (3 stappen, ~3–5%)</span>
+      <span class="bedrag positief">+ € 14.000 – 23.000</span>
+    </div>
+    <div class="totaal-row">
+      <span class="rlabel">Dak + dakkapellen fase 2</span>
+      <span class="bedrag positief">+ € 15.000 – 25.000</span>
+    </div>
+    <div class="totaal-row">
+      <span class="rlabel strikethrough">Eerder F→A (gecorrigeerd)</span>
+      <span class="strikethrough">€ 22.500 – 31.500</span>
+    </div>
+  </div>
+
+  <div class="card" style="background:var(--groen-pale);border-color:#86efac;">
+    <p style="font-size:0.75rem;color:var(--groen);margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;">Terugverdientijd</p>
+    <div class="totaal-row" style="border-color:#86efac;"><span>Klimaatstarters (Ruiten-prijzen)</span><span class="bedrag" style="color:var(--blauw);">13 jaar</span></div>
+    <div class="totaal-row" style="border-color:#86efac;"><span>Fase 1 reële prijzen</span><span class="bedrag positief">~0 jaar ✨</span></div>
+    <div class="totaal-row" style="border-color:#86efac;"><span>Fase 1+2 totaal</span><span class="bedrag" style="color:var(--groen);">~25 jaar</span></div>
+    <div style="font-size:0.72rem;color:var(--groen);margin-top:8px;">Excl. waardestijging. Incl. waardestijging direct rendabel.</div>
+  </div>
+
+  <div class="card">
+    <p style="font-size:0.75rem;color:var(--muted);margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;">Cashflow fase 1 via hypotheek</p>
+    <div class="totaal-row"><span class="rlabel">Eigen bijdrage fase 1</span><span class="bedrag">~ € 0</span></div>
+    <div class="totaal-row"><span class="rlabel">Energiebesparing per maand</span><span class="bedrag positief">+ € 85 / mnd</span></div>
+    <div style="font-size:0.72rem;color:var(--muted);margin-top:8px;">Nationaal Warmtefonds: 0% rente lening beschikbaar voor resterende eigen bijdrage.</div>
+  </div>
+</div>
+
+<!-- TAB: WONING -->
+<div id="tab-woning" class="content hidden">
+  <div class="woning-grid">
+    <div class="woning-stat"><span class="val">D</span><div class="lbl">Label adviesrapport (11 mei)</div></div>
+    <div class="woning-stat"><span class="val">~1935</span><div class="lbl">Bouwjaar</div></div>
+    <div class="woning-stat"><span class="val">€ 467k</span><div class="lbl">WOZ 2025</div></div>
+    <div class="woning-stat"><span class="val">< €477k</span><div class="lbl">VHF-grens ✅</div></div>
+  </div>
+
+  <div class="alert blue">
+    <strong>Label verschil:</strong> EP-Online = F · Klimaatstarters berekend = D (balansventilatie meegewogen). Beide kwalificeren voor VHF.
+  </div>
+
+  <div class="card">
+    <p style="font-size:0.75rem;color:var(--muted);margin-bottom:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;">Oppervlakken (bevestigd)</p>
+    <div class="totaal-row"><span>🧱 Spouwmuur</span><span class="bedrag">91 m²</span></div>
+    <div class="totaal-row"><span>🪵 Bodemisolatie</span><span class="bedrag">45 m²</span></div>
+    <div class="totaal-row"><span>🏠 Dak</span><span class="bedrag">60–63 m²</span></div>
+    <div class="totaal-row"><span>🪟 Glas</span><span class="bedrag ok">Al HR++ ✅</span></div>
+  </div>
+
+  <div class="card">
+    <p style="font-size:0.75rem;color:var(--muted);margin-bottom:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;">Subsidies status</p>
+    <div class="totaal-row"><span>VHF Zaandam Oost (€7.500)</span><span><span class="badge badge-orange">⚠️ 1 okt 2026</span></span></div>
+    <div class="totaal-row"><span>NIP Zaanstad (€1.500)</span><span><span class="badge badge-orange">31 dec 2026</span></span></div>
+    <div class="totaal-row"><span>ISDE per maatregel</span><span><span class="badge badge-green">t/m 2030</span></span></div>
+    <div class="totaal-row"><span>Keuzevrijheid aannemer</span><span><span class="badge badge-green">✅ Bevestigd</span></span></div>
+  </div>
+
+  <div class="card">
+    <p style="font-size:0.75rem;color:var(--muted);margin-bottom:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;">Offertes & contacten</p>
+    <div class="totaal-row"><span>DuurzaamXL (isolatie fase 1+2)</span><span style="font-size:0.78rem;" class="ok">✅ Offerte ontvangen</span></div>
+    <div class="totaal-row"><span>Warmland (Weheat Flint)</span><span style="font-size:0.78rem;" class="ok">✅ Offerte ontvangen</span></div>
+    <div class="totaal-row"><span>Klimaatstarters (Y. Avut)</span><span style="font-size:0.78rem;" class="ok">✅ Rapport 11 mei</span></div>
+    <div class="totaal-row"><span>Ruiter Dakkapellen</span><span style="font-size:0.78rem;color:var(--muted);">⏳ Nieuwe offerte opvragen</span></div>
+    <div class="totaal-row"><span>John (buurman, combikorting dak)</span><span style="font-size:0.78rem;color:var(--muted);">⏳ Reactie afwachten</span></div>
+    <div class="totaal-row"><span>Erik IJssel (Hypotheker)</span><span style="font-size:0.78rem;color:var(--muted);">Financiering bespreken</span></div>
+  </div>
+
+  <div class="card">
+    <p style="font-size:0.75rem;color:var(--muted);margin-bottom:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;">Benodigd voor VHF-aanvraag</p>
+    <div class="totaal-row">✅ Adviesrapport Klimaatstarters</div>
+    <div class="totaal-row">✅ Offertes DuurzaamXL + Warmland</div>
+    <div class="totaal-row">⏳ Indicatieve ISDE-subsidieaanvraag</div>
+    <div class="totaal-row">⚠️ Aanvraag vóór start werkzaamheden!</div>
+  </div>
+</div>
+
+<!-- TAB: PLANNING -->
+<div id="tab-planning" class="content hidden">
+  <div class="section-title">Tijdlijn</div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot done"></div>
+      <div class="tl-date">April 2026</div>
+      <div class="tl-title">✅ Alle offertes ontvangen</div>
+      <div class="tl-desc">DuurzaamXL, Warmland (Weheat Flint), Ruiten, Ruiter, Dakkapellen.nu</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot done"></div>
+      <div class="tl-date">11 mei 2026</div>
+      <div class="tl-title">✅ Klimaatstarters adviesrapport</div>
+      <div class="tl-desc">Label D bevestigd. Keuzevrijheid aannemer bevestigd. VHF + NIP + ISDE beschikbaar.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot done"></div>
+      <div class="tl-date">12 mei 2026</div>
+      <div class="tl-title">✅ Beslissingen genomen + mails verstuurd</div>
+      <div class="tl-desc">Warmland akkoord gegeven (o.v. 3 punten). Mail DuurzaamXL vervolgstappen. Klachtbrief Ruiten aangetekend verstuurd.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot next"></div>
+      <div class="tl-date">Mei / juni 2026</div>
+      <div class="tl-title">📋 VHF-aanvraag indienen</div>
+      <div class="tl-desc">Via Klimaatstarters (Y. Avut). Vóór start werkzaamheden! Docs: rapport + offertes + ISDE-aanvraag.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot urgent"></div>
+      <div class="tl-date">Uiterlijk 1 oktober 2026</div>
+      <div class="tl-title">⚠️ VHF aanvraagdeadline</div>
+      <div class="tl-desc">€ 7.500 — aanvraag ingediend vóór start werkzaamheden.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot urgent"></div>
+      <div class="tl-date">Uiterlijk 31 december 2026</div>
+      <div class="tl-title">⚠️ NIP deadline</div>
+      <div class="tl-desc">€ 1.500 — werkzaamheden uitgevoerd én betaald.</div>
+    </div>
+  </div>
+
+  <div style="height:16px;"></div>
+  <div class="section-title">Actielijst</div>
+
+  <div class="card">
+    <p style="font-size:0.75rem;color:var(--muted);margin-bottom:8px;font-weight:600;">NU ACTIE VEREIST</p>
+    <div class="totaal-row">⏳ VHF-aanvraag starten via Klimaatstarters (fase 1)</div>
+    <div class="totaal-row">⏳ Ruiter Dakkapellen: nieuwe offerte achterzijde 2026</div>
+    <div class="totaal-row">⏳ Reactie Warmland afwachten op 3 openstaande punten</div>
+  </div>
+
+  <div class="card">
+    <p style="font-size:0.75rem;color:var(--muted);margin-bottom:8px;font-weight:600;">AFWACHTEN</p>
+    <div class="totaal-row">⏳ DuurzaamXL: herziene offerte dakkapellen + gedetailleerd dak</div>
+    <div class="totaal-row">⏳ John: reactie op combikorting dak</div>
+    <div class="totaal-row">⏳ Ruiten: reactie op klachtbrief (deadline 2 weken)</div>
+    <div class="totaal-row">⏳ Financiering bespreken Erik IJssel</div>
+  </div>
+
+  <div class="card">
+    <p style="font-size:0.75rem;color:var(--muted);margin-bottom:8px;font-weight:600;">AFGEROND ✅</p>
+    <div class="totaal-row">✅ Klimaatstarters rapport ontvangen</div>
+    <div class="totaal-row">✅ Keuzevrijheid aannemer bevestigd</div>
+    <div class="totaal-row">✅ Glas hoeft niet vervangen te worden</div>
+    <div class="totaal-row">✅ Offerte DuurzaamXL isolatie akkoord</div>
+    <div class="totaal-row">✅ Warmland akkoord gegeven (o.v. 3 punten)</div>
+    <div class="totaal-row">✅ Mail DuurzaamXL vervolgstappen verstuurd</div>
+    <div class="totaal-row">✅ Klachtbrief Ruiten aangetekend verstuurd</div>
+    <div class="totaal-row">✅ Subsidie fase 1 en 2 apart indienen (bewuste keuze)</div>
+    <div class="totaal-row">✅ WOZ-check (&lt; €477k)</div>
+    <div class="totaal-row">✅ John geïnformeerd over dak DuurzaamXL</div>
   </div>
 </div>
 
 <script>
-const VHF=7500,LAI=1500,HYP10K=50;
-const DATA=[
-  {id:'spouwmuur',naam:'Spouwmuurisolatie',cat:'isolatie',vp:false,wens:false,comfort:false,bruto:2500,subsidie:2235,besp:550,waarde:5000,tvt:1,tip:'~70m², afhankelijk van spouwbreedte. Eerst inspectie nodig bij jaren \'30 woning.',risico:'Spouw mogelijk te smal of gevuld met puin. Laat inspecteren vóór offerte.',info:null,m2:false},
-  {id:'vloer',naam:'Vloerisolatie (kruipruimte)',cat:'isolatie',vp:false,wens:false,comfort:false,bruto:2500,subsidie:1760,besp:280,waarde:3000,tvt:3,tip:'Via kruipruimte. Direct comforteffect: geen koude voeten meer.',risico:'Mogelijk asbest in vloerconstructie. Check bij inspectie.',info:null,m2:false},
-  {id:'glas',naam:'HR++ glas (bestaande kozijnen)',cat:'isolatie',vp:false,wens:false,comfort:false,bruto:4000,subsidie:1400,besp:360,waarde:4000,tvt:7,tip:'~20m², houten kozijnen behouden. Beter passend bij karakter woning dan kunststof.',risico:'Kozijnen mogelijk te smal voor dubbelglas.',info:null,m2:false},
-  {id:'dak',naam:'Dakrenovatie + buitenisolatie',cat:'dak',vp:false,urgent:true,wens:false,comfort:false,bruto:15000,subsidie:1950,besp:400,waarde:10000,tvt:8,tip:'Dak moet toch aan vanwege verschoven pannen. Buitenisolatie meenemen = geen ruimteverlies in slaapkamer op zolder.',risico:'Faunaonderzoek verplicht (vleermuizen/gierzwaluwen).',info:'Bespreek met John: gedeeld dak tegelijk aanpakken = 10-15% korting.',m2:false},
-  {id:'dkv',naam:'Dakkapel voorkant vervangen',cat:'dak',vp:false,urgent:true,wens:false,comfort:false,bruto:6500,subsidie:0,besp:0,waarde:5000,tvt:null,tip:'Vervanging noodzakelijk. Geen energiesubsidie — puur onderhoud.',risico:null,info:null,m2:false},
-  {id:'dka',naam:'Dakkapel achterkant (nieuw)',cat:'dak',vp:false,wens:true,comfort:false,bruto:11000,subsidie:0,besp:0,waarde:8000,tvt:null,tip:'Wens. Nu meepakken als steigers staan = 30-40% goedkoper dan later apart.',risico:null,info:null,m2:false},
-  {id:'wp',naam:'Hybride warmtepomp (4kW)',cat:'installatie',vp:false,wens:false,comfort:false,bruto:6250,subsidie:2525,besp:625,waarde:5000,tvt:6,tip:'Combineert met bestaande cv-ketel. Bespaart 60-70% op gas. A+++ label = hogere subsidie.',risico:'Radiatoren controleren op geschiktheid. Buitenunit geluid — afstemmen met John over plaatsing.',info:null,m2:false},
-  {id:'vent',naam:'Energiezuinige ventilatie',cat:'installatie',vp:false,wens:false,comfort:false,bruto:1250,subsidie:400,besp:0,waarde:1000,tvt:null,tip:'Noodzakelijk na isoleren — luchtdichter huis zonder ventilatie geeft vochtproblemen.',risico:null,info:'€400 ISDE alleen in combinatie met isolatiemaatregel.',m2:false},
-  {id:'serre',naam:'Serre aanbouwen (~9m²)',cat:'uitbreiding',vp:false,wens:true,comfort:false,bruto:42500,subsidie:0,besp:0,waarde:0,tvt:null,tip:'Aluminium/glas aanbouw achterzijde. Inclusief: plateau slopen + nieuwe betonplaat, gedeeltelijke puiverwijdering, aluminium serre, elektrische vloerverwarming, afwerking. Exclusief: vloertegels, elektra/verlichting, zonwering (~€1.500-5.000 extra).',risico:'Vergunning check vereist — Zaanstad heeft eigen regels voor glazen kap. Constructeur nodig als hele pui eruit gaat.',info:'All-in schatting €40.000-€45.000 incl. buffer. Geen subsidie. Geen ISDE of VHF van toepassing.',m2:true,m2label:'Extra woonoppervlak',m2default:7.5,wpm2:2500},
-  {id:'keuken',naam:'Lichte keukenaanpassing',cat:'comfort',vp:false,wens:false,comfort:true,bruto:3000,subsidie:0,besp:0,waarde:0,tvt:null,tip:'Gedeeltelijke aanpassing — geen volledige renovatie. Puur voor wooncomfort en gebruiksgemak.',risico:null,info:'Geen subsidie. Geen verwachte waardestijging. Eigen keuze voor leefbaarheid.',m2:false},
-];
-const CATS={isolatie:'cat-isolatie',dak:'cat-dak',installatie:'cat-installatie',uitbreiding:'cat-uitbreiding',comfort:'cat-comfort'};
+  const STORAGE_KEY = 'verd_p52_v3';
 
-function laad(){try{const s=localStorage.getItem('verd_p52_v2');if(s)return JSON.parse(s);}catch(e){}const st={sel:{},off:{},m2s:{},notities:'',open:{},dark:false};DATA.forEach(m=>{st.sel[m.id]=m.vp||m.urgent||false;});return st;}
-function sla(){try{localStorage.setItem('verd_p52_v2',JSON.stringify(st));}catch(e){}}
-let st=laad();
-
-function applyDark(){const btn=document.getElementById('dm-btn');if(st.dark){document.documentElement.classList.add('dark');if(btn)btn.textContent='☀️ Light';}else{document.documentElement.classList.remove('dark');if(btn)btn.textContent='🌙 Dark';}}
-function toggleDark(){st.dark=!st.dark;sla();applyDark();}
-
-function fmt(n){if(isNaN(n)||n===null)return'—';return'€'+Math.round(n).toLocaleString('nl-NL');}
-function set(id,v){const el=document.getElementById(id);if(el)el.textContent=v;}
-
-function bereken(){
-  const actief=DATA.filter(m=>st.sel[m.id]);
-  let bruto=0,isde=0,besp=0,waarde=0;
-  actief.forEach(m=>{
-    const o=st.off[m.id],k=(o!==undefined&&o!=='')? parseFloat(o):m.bruto;
-    bruto+=isNaN(k)?0:k;isde+=m.subsidie;besp+=m.besp;
-    if(m.m2){const v=parseFloat(st.m2s[m.id]||m.m2default||0);waarde+=v*(m.wpm2||0);}
-    else waarde+=m.waarde;
-  });
-  const heeftVerd=actief.some(m=>['isolatie','dak','installatie'].includes(m.cat));
-  const gem=heeftVerd?VHF+LAI:0;
-  const netto=Math.max(0,bruto-isde-gem);
-  const hyp=Math.round((netto/10000)*HYP10K);
-  const cf=Math.round(besp/12)-hyp;
-  return{bruto,isde,gem,netto,besp,waarde,hyp,cf,actief};
-}
-
-// ── LABEL METER ──
-function berekenLabel(actief){
-  const scores={spouwmuur:1.5,vloer:1,glas:1,dak:2,dkv:0,dka:0,wp:2,vent:0,serre:0,keuken:0};
-  let score=0;
-  actief.forEach(m=>{score+=scores[m.id]||0;});
-  if(score>=7.5)return'A';
-  if(score>=6)return'B';
-  if(score>=4.5)return'C';
-  if(score>=3)return'D';
-  if(score>=1.5)return'E';
-  return'F';
-}
-
-function updateLabel(actief){
-  const volgorde=['F','E','D','C','B','A'];
-  const huidig=berekenLabel(actief);
-  const hidx=volgorde.indexOf(huidig);
-  volgorde.forEach((l,i)=>{
-    const el=document.getElementById('ls-'+l);
-    if(!el)return;
-    el.className='ls l'+l;
-    if(i<hidx)el.classList.add('bereikt');
-    else if(i===hidx)el.classList.add('huidig');
-  });
-  const tekst=document.getElementById('lb-tekst');
-  if(tekst){
-    if(huidig==='A')tekst.textContent='🎯 Label A!';
-    else{const nog=volgorde.slice(hidx+1);tekst.textContent=`→ ${huidig} (${noch_nodig(actief)})`;}
+  function showTab(name, el) {
+    document.querySelectorAll('[id^="tab-"]').forEach(e => e.classList.add('hidden'));
+    document.getElementById('tab-' + name).classList.remove('hidden');
+    document.querySelectorAll('.tab').forEach(e => e.classList.remove('active'));
+    if (el) el.classList.add('active');
   }
-}
 
-function noch_nodig(actief){
-  const heeftWP=actief.some(m=>m.id==='wp');
-  const heeftDak=actief.some(m=>m.id==='dak');
-  const heeftSpouw=actief.some(m=>m.id==='spouwmuur');
-  const heeftVloer=actief.some(m=>m.id==='vloer');
-  const heeftGlas=actief.some(m=>m.id==='glas');
-  const ontbreekt=[];
-  if(!heeftWP)ontbreekt.push('warmtepomp');
-  if(!heeftDak)ontbreekt.push('dak');
-  if(!heeftSpouw)ontbreekt.push('spouwmuur');
-  if(!heeftVloer)ontbreekt.push('vloer');
-  if(!heeftGlas)ontbreekt.push('glas');
-  if(ontbreekt.length===0)return'compleet';
-  return'voeg '+ontbreekt[0]+' toe';
-}
+  const MAATREGELEN = {
+    spouw: 15, vloer: 8, wp: 25, dak: 20, dakkapel: 5, dakkapelv: 3, vent: 4
+  };
+  const THRESHOLDS = [
+    { score: 0, label: 'D' }, { score: 15, label: 'C' },
+    { score: 35, label: 'B' }, { score: 60, label: 'A' }
+  ];
 
-function updateTotalen(){
-  const c=bereken();
-  set('bar-bruto',fmt(c.bruto));set('bar-netto',fmt(c.netto));
-  const cfb=document.getElementById('bar-cf');if(cfb){cfb.textContent=(c.cf>=0?'+':'')+fmt(c.cf);cfb.className='ti-v '+(c.cf>=0?'pos':'neg');}
-  set('t-bruto',fmt(c.bruto));set('t-isde','-'+fmt(c.isde));set('t-gem','-'+fmt(c.gem));
-  set('t-netto',fmt(c.netto));set('t-besp',fmt(c.besp)+'/jr');set('t-waarde','+'+fmt(c.waarde));set('t-hyp',fmt(c.hyp)+'/mnd');
-  const cfel=document.getElementById('t-cf');if(cfel){cfel.textContent=(c.cf>=0?'+':'')+fmt(c.cf)+'/mnd';cfel.className='cf-v '+(c.cf>=0?'pos':'neg');}
-  const tc=document.getElementById('tags-cont'),tl=document.getElementById('tags-teller');
-  if(tc)tc.innerHTML=c.actief.map(m=>`<span class="tag${m.comfort?' c':m.wens?' w':''}">${m.naam}</span>`).join('');
-  if(tl)tl.textContent=`Geselecteerd (${c.actief.length})`;
-  DATA.forEach(m=>{
-    const nel=document.getElementById('netto-'+m.id);if(nel){const o=st.off[m.id],k=(o!==undefined&&o!=='')? parseFloat(o):m.bruto;nel.textContent=fmt(Math.max(0,k-m.subsidie));}
-    if(m.m2){const wel=document.getElementById('w-'+m.id);if(wel){const v=parseFloat(st.m2s[m.id]||m.m2default||0);wel.textContent='+'+fmt(v*(m.wpm2||0));}}
-  });
-  updateLabel(c.actief);
-}
-
-function toggle(id){const m=DATA.find(x=>x.id===id);if(m.vp)return;st.sel[id]=!st.sel[id];sla();renderKaart(id);updateTotalen();}
-function toggleOpen(id){st.open[id]=!st.open[id];sla();renderKaart(id);}
-function setOff(id,v){st.off[id]=v;sla();updateTotalen();}
-function setM2(id,v){st.m2s[id]=v;sla();updateTotalen();}
-function slaNotities(){st.notities=document.getElementById('notities').value;sla();}
-
-function renderKaart(id){
-  const el=document.getElementById('k-'+id);if(!el)return;
-  const m=DATA.find(x=>x.id===id);
-  const aan=st.sel[id],open=st.open[id];
-  const o=st.off[id],k=(o!==undefined&&o!=='')? parseFloat(o):m.bruto;
-  const netto=Math.max(0,k-m.subsidie);
-  const m2v=parseFloat(st.m2s[id]||(m.m2default||0));
-  let cls='kaart';
-  if(m.vp)cls+=' vp';else if(aan)cls+=' aan';else cls+=' uit';
-  if(m.wens&&!m.vp)cls+=' wstijl';
-  if(open)cls+=' open';
-  const vink=(aan||m.vp)?'✓':'';
-  const badges=(m.vp?'<span class="badge bv">Verplicht</span>':'')+(m.urgent?'<span class="badge bu">Urgent</span>':'')+(m.wens?'<span class="badge bw">Wens</span>':'')+(m.comfort?'<span class="badge bc">Comfort</span>':'');
-  const offHad=(o!==undefined&&o!=='');
-  const sumtxt=[m.besp>0? fmt(m.besp)+'/jr besparing':'',fmt(offHad? parseFloat(o):m.bruto)+' bruto'].filter(Boolean).join(' · ');
-  const whtml=m.m2? `<span id="w-${id}">+${fmt(m2v*(m.wpm2||0))}</span>`:(m.waarde>0? '+'+fmt(m.waarde):'—');
-  const m2html=m.m2? `<div class="m2r"><span class="m2l">📐 ${m.m2label}</span><input class="m2i" type="number" min="1" max="60" value="${m2v}" onclick="event.stopPropagation()" oninput="setM2('${id}',this.value)"><span style="font-size:13px;color:var(--g-light)">m²</span></div>`:'';
-  el.className=cls;
-  el.innerHTML=`
-    <div class="k-h" onclick="toggleOpen('${id}')">
-      <div class="check" onclick="event.stopPropagation();toggle('${id}')">${vink}</div>
-      <div class="k-info">
-        ${badges?`<div class="badges">${badges}</div>`:''}
-        <div class="k-naam">${m.naam}</div>
-        <div class="k-sum">${sumtxt}</div>
-      </div>
-      <span class="chev">▼</span>
-    </div>
-    <div class="k-body"><div class="k-body-in">
-      ${m.tip?`<div class="ktip">${m.tip}</div>`:''}
-      ${m.risico?`<div class="krisico">⚠ ${m.risico}</div>`:''}
-      ${m.info?`<div class="kinfo">💡 ${m.info}</div>`:''}
-      ${m2html}
-      <div class="offerte-sectie">
-        <div class="offerte-titel">✏️ Jouw offertebedrag${offHad?'<span class="offerte-had">✓ Offerte ingevuld</span>':''}</div>
-        <input class="bruto-i" type="number" value="${offHad?o:m.bruto}" onclick="event.stopPropagation()" oninput="setOff('${id}',this.value)" placeholder="Vul offertebedrag in">
-        <div class="bruto-hint">${offHad?'Offerte ingevuld — schatting vervangen':'Schatting — vervang met echte offerte'}</div>
-      </div>
-      <div class="cijfers">
-        <div class="cijfer"><div class="c-l">ISDE subsidie</div><div class="c-v groen">${m.subsidie>0? '-'+fmt(m.subsidie):'—'}</div></div>
-        <div class="cijfer"><div class="c-l">Netto</div><div class="c-v dgroen" id="netto-${id}">${fmt(netto)}</div></div>
-        <div class="cijfer"><div class="c-l">Waardestijging</div><div class="c-v groen">${whtml}</div></div>
-      </div>
-      <div class="extra-r">
-        ${m.besp>0?`<span class="extra-i">💰 ${fmt(m.besp)}/jr besparing</span>`:''}
-        ${m.tvt?`<span class="extra-i">⏱ ~${m.tvt} jr terugverdientijd</span>`:''}
-      </div>
-    </div></div>`;
-}
-
-function toonTab(naam,el){
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
-  document.getElementById('panel-'+naam).classList.add('on');
-  el.classList.add('on');
-}
-
-function resetAlles(){
-  if(confirm('Alle offertes en keuzes wissen?')){
-    const dark=st.dark;
-    st={sel:{},off:{},m2s:{},notities:'',open:{},dark};
-    DATA.forEach(m=>{st.sel[m.id]=m.vp||m.urgent||false;});
-    sla();renderAlles();
+  function updateLabel() {
+    let score = 0;
+    for (const [key, pts] of Object.entries(MAATREGELEN)) {
+      if (document.getElementById('chk-' + key)?.checked) score += pts;
+    }
+    let current = 'D';
+    for (const t of THRESHOLDS) { if (score >= t.score) current = t.label; }
+    ['D','C','B','A'].forEach(l => {
+      const el = document.getElementById('lbl-' + l);
+      if (!el) return;
+      el.classList.remove('active');
+      el.style.opacity = l === 'D' ? '0.75' : '0.4';
+    });
+    const activeEl = document.getElementById('lbl-' + current);
+    if (activeEl) { activeEl.classList.add('active'); activeEl.style.opacity = '1'; }
+    saveInputs();
   }
-}
 
-function renderAlles(){
-  Object.values(CATS).forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML='';});
-  DATA.forEach(m=>{
-    const cont=document.getElementById(CATS[m.cat]);if(!cont)return;
-    const div=document.createElement('div');div.id='k-'+m.id;
-    cont.appendChild(div);renderKaart(m.id);
-  });
-  const nn=document.getElementById('notities');if(nn)nn.value=st.notities||'';
-  updateTotalen();applyDark();
-}
+  function setScenario(s) {
+    document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('btn-' + s).classList.add('active');
+    const d = {
+      klimaat: { netto:'€ 15.634', bruto:'€ 30.682', sub:'eigen bijdrage · Klimaatstarters-scenario (Ruiten-prijzen)', subsidie:'− € 15.048', isde:'ISDE glas+dak+spouw+bodem+wp', isdeamt:'− € 6.048' },
+      fase1:   { netto:'~ € 0',    bruto:'€ 10.665', sub:'netto fase 1 · DuurzaamXL + Warmland · subsidie dekt alles', subsidie:'− € 12.226', isde:'ISDE spouw+bodem+wp', isdeamt:'− € 3.226' },
+      alles:   { netto:'~ € 25.000', bruto:'€ 39.678', sub:'netto fase 1+2 · incl. dak + dakkapel achter', subsidie:'− € 14.274', isde:'ISDE spouw+bodem+wp+dak', isdeamt:'− € 5.274' },
+    };
+    document.getElementById('netto-investering').textContent = d[s].netto;
+    document.getElementById('netto-sub').textContent = d[s].sub;
+    document.getElementById('t-bruto').textContent = d[s].bruto;
+    document.getElementById('t-subsidie').textContent = d[s].subsidie;
+    document.getElementById('t-isde-label').textContent = d[s].isde;
+    document.getElementById('t-isde').textContent = d[s].isdeamt;
+  }
 
-renderAlles();
+  function saveInputs() {
+    const state = { checks: {}, inputs: {} };
+    for (const key of Object.keys(MAATREGELEN)) {
+      state.checks[key] = document.getElementById('chk-' + key)?.checked || false;
+    }
+    state.inputs['offerte-dakkapel'] = document.getElementById('offerte-dakkapel')?.value || '';
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+  }
+
+  function loadInputs() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const state = JSON.parse(raw);
+      for (const [key, val] of Object.entries(state.checks || {})) {
+        const el = document.getElementById('chk-' + key);
+        if (el) el.checked = val;
+      }
+      const dk = document.getElementById('offerte-dakkapel');
+      if (dk && state.inputs?.['offerte-dakkapel']) dk.value = state.inputs['offerte-dakkapel'];
+      updateLabel();
+    } catch(e) {}
+  }
+
+  function toggleDark() {
+    const isDark = document.documentElement.classList.toggle('dark');
+    document.getElementById('dm-btn').textContent = isDark ? '☀️ Light' : '🌙 Dark';
+    try { localStorage.setItem('verd_p52_dark', isDark ? '1' : '0'); } catch(e) {}
+  }
+
+  function initDark() {
+    const saved = localStorage.getItem('verd_p52_dark');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (saved === '1' || (saved === null && prefersDark)) {
+      document.documentElement.classList.add('dark');
+      const btn = document.getElementById('dm-btn');
+      if (btn) btn.textContent = '☀️ Light';
+    }
+  }
+
+  initDark();
+  loadInputs();
 </script>
 </body>
 </html>
