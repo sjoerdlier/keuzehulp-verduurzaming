@@ -501,7 +501,7 @@
     document.getElementById('btn-' + s).classList.add('active');
     const d = {
       klimaat: { netto:'€ 15.634', bruto:'€ 30.682', sub:'eigen bijdrage · Klimaatstarters-scenario (Ruiten-prijzen)', subsidie:'− € 15.048', isde:'ISDE glas+dak+spouw+bodem+wp', isdeamt:'− € 6.048' },
-      fase1:   { netto:'~ € 0',    bruto:'€ 10.665', sub:'netto fase 1 · DuurzaamXL + Warmland · subsidie dekt alles', subsidie:'− € 12.226', isde:'ISDE spouw+bodem+wp', isdeamt:'− € 3.226' },
+      fase1:   { netto:'~ € 439', bruto:'€ 10.665', sub:'netto fase 1 · DuurzaamXL + Warmland (ISDE wp al verrekend in Warmland-prijs)', subsidie:'− € 10.226', isde:'ISDE spouw+bodem (wp zit al in Warmland-prijs)', isdeamt:'− € 1.226' },
       alles:   { netto:'~ € 25.000', bruto:'€ 39.678', sub:'netto fase 1+2 · incl. dak + dakkapel achter', subsidie:'− € 14.274', isde:'ISDE spouw+bodem+wp+dak', isdeamt:'− € 5.274' },
     };
     document.getElementById('netto-investering').textContent = d[s].netto;
